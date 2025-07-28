@@ -35,6 +35,17 @@ jobs:
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
         
+      - name: Verify version match
+        run: |
+          TAG_VERSION="${{ steps.get_version.outputs.VERSION }}"
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+            echo "❌ Version mismatch: tag v$TAG_VERSION != package.json v$PACKAGE_VERSION"
+            echo "Please ensure git tag matches package.json version"
+            exit 1
+          fi
+          echo "✅ Version match confirmed: v$TAG_VERSION"
+        
       - name: Create release notes
         id: release_notes
         run: |
@@ -42,14 +53,21 @@ jobs:
           echo "## 🚀 MicroUI v${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_OUTPUT
           echo "" >> $GITHUB_OUTPUT
           echo "### 📦 Assets" >> $GITHUB_OUTPUT
-          echo "- **microui.js** (${$(stat -f%z dist/microui.js | numfmt --to=iec)}B) - Development build with source maps" >> $GITHUB_OUTPUT
-          echo "- **microui.min.js** (${$(stat -f%z dist/microui.min.js | numfmt --to=iec)}B) - Production build, minified" >> $GITHUB_OUTPUT
-          echo "- **microui.esm.js** (${$(stat -f%z dist/microui.esm.js | numfmt --to=iec)}B) - ES modules build" >> $GITHUB_OUTPUT
+          
+          # Calculate file sizes properly
+          JS_SIZE=$(stat -c%s dist/microui.js 2>/dev/null || stat -f%z dist/microui.js)
+          MIN_SIZE=$(stat -c%s dist/microui.min.js 2>/dev/null || stat -f%z dist/microui.min.js)
+          ESM_SIZE=$(stat -c%s dist/microui.esm.js 2>/dev/null || stat -f%z dist/microui.esm.js)
+          GZIP_SIZE=$(gzip -c dist/microui.min.js | wc -c)
+          
+          echo "- **microui.js** ($(echo $JS_SIZE | numfmt --to=iec)B) - Development build with source maps" >> $GITHUB_OUTPUT
+          echo "- **microui.min.js** ($(echo $MIN_SIZE | numfmt --to=iec)B) - Production build, minified" >> $GITHUB_OUTPUT
+          echo "- **microui.esm.js** ($(echo $ESM_SIZE | numfmt --to=iec)B) - ES modules build" >> $GITHUB_OUTPUT
           echo "" >> $GITHUB_OUTPUT
           echo "### 📊 Bundle Analysis" >> $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
-          echo "Minified: $(stat -f%z dist/microui.min.js | numfmt --to=iec)B" >> $GITHUB_OUTPUT
-          echo "Gzipped:  $(gzip -c dist/microui.min.js | wc -c | numfmt --to=iec)B" >> $GITHUB_OUTPUT
+          echo "Minified: $(echo $MIN_SIZE | numfmt --to=iec)B" >> $GITHUB_OUTPUT
+          echo "Gzipped:  $(echo $GZIP_SIZE | numfmt --to=iec)B" >> $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
           echo "" >> $GITHUB_OUTPUT
           echo "### 🔗 Links" >> $GITHUB_OUTPUT
@@ -98,8 +116,7 @@ jobs:
           fail_on_unmatched_files: false
           generate_release_notes: true
           
-      # Uncomment to publish to NPM automatically
-      # - name: Publish to NPM
-      #   run: npm publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
