@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroUI - Advanced Interactive Examples</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .example-section {
+            background: white;
+            border-radius: 12px;
+            margin: 2rem 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .example-header {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .example-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 400px;
+        }
+
+        .code-panel {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            overflow: auto;
+        }
+
+        .code-panel h4 {
+            color: #90cdf4;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .code-block {
+            background: #1a202c;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            overflow-x: auto;
+        }
+
+        .demo-panel {
+            padding: 1.5rem;
+            background: #fff;
+            border-left: 3px solid #764ba2;
+            overflow: auto;
+        }
+
+        .demo-panel h4 {
+            color: #764ba2;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .demo-controls {
+            margin: 1rem 0;
+            flex-wrap: wrap;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .demo-result {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 6px;
+            border: 2px dashed #e2e8f0;
+            min-height: 100px;
+        }
+
+        .btn {
+            background: #764ba2;
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            margin: 0.25rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #6b46c1;
+            transform: translateY(-1px);
+        }
+
+        .btn.success {
+            background: #48bb78;
+        }
+
+        .btn.danger {
+            background: #f56565;
+        }
+
+        .btn.warning {
+            background: #ed8936;
+        }
+
+        .btn.info {
+            background: #3182ce;
+        }
+
+        .component-demo {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: white;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            background: #f7fafc;
+            border-radius: 4px;
+            border-left: 4px solid #764ba2;
+        }
+
+        .todo-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+            border-left-color: #48bb78;
+        }
+
+        .todo-item input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        .todo-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #764ba2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .navigation {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #764ba2;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #764ba2;
+            color: white;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .example-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .code-panel {
+                order: 2;
+            }
+            
+            .demo-panel {
+                order: 1;
+                border-left: none;
+                border-top: 3px solid #764ba2;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .delegate-demo {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .delegate-item {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            background: #edf2f7;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .delegate-item:hover {
+            background: #e2e8f0;
+        }
+
+        .delegate-item.clicked {
+            background: #bee3f8;
+            border: 2px solid #3182ce;
+        }
+
+        /* Code block styling for Prism.js */
+        .code-block {
+            background: #2d3748 !important;
+            border-radius: 8px !important;
+            padding: 1.5rem !important;
+            margin: 1rem 0 !important;
+            font-family: 'SFMono-Regular', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', monospace !important;
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+            overflow-x: auto !important;
+            border: 1px solid #4a5568 !important;
+        }
+
+        .code-block code {
+            background: none !important;
+            padding: 0 !important;
+            font-size: inherit !important;
+            color: #f7fafc !important;
+        }
+
+        /* Override Prism theme for our dark theme */
+        .code-block .token.comment { color: #68d391 !important; }
+        .code-block .token.string { color: #fbb6ce !important; }
+        .code-block .token.keyword { color: #90cdf4 !important; font-weight: bold !important; }
+        .code-block .token.function { color: #fbd38d !important; }
+        .code-block .token.property { color: #fcd34d !important; }
+        .code-block .token.number { color: #fb7185 !important; }
+        .code-block .token.operator { color: #e2e8f0 !important; }
+        .code-block .token.punctuation { color: #e2e8f0 !important; }
+        .code-block .token.method { color: #a78bfa !important; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 MicroUI Advanced Examples</h1>
+        <p>Complex features with interactive code demonstrations</p>
+    </div>
+
+    <div class="container">
+        <a href="../" class="back-link">← Back to Documentation</a>
+        
+        <div class="navigation">
+                        <div class="nav-links">
+                <a href="index.html" class="nav-link">Examples Home</a>
+                <a href="basic-interactive.html" class="nav-link">Basic Examples</a>
+                <a href="advanced-interactive.html" class="nav-link active">Advanced Examples</a>
+                <a href="test.html" class="nav-link">Test Playground</a>
+            </div>
+        </div>
+
+        <!-- Component System Example -->
+        <div class="example-section">
+            <div class="example-header">
+                🧩 Component System
+            </div>
+            <div class="example-content">
+                <div class="code-panel">
+                    <h4>💻 JavaScript Code</h4>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// Define a Todo component
+class TodoComponent extends MicroUI.Component {
+    constructor(element, options) {
+        super(element, options);
+        this.todos = options.todos || [];
+    }
+
+    template() {
+        return `
+            &lt;div class="todo-app"&gt;
+                &lt;input type="text" class="todo-input" 
+                       placeholder="Add new todo..."&gt;
+                &lt;button class="btn add-todo"&gt;Add&lt;/button&gt;
+                &lt;div class="todo-list"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        `;
+    }
+
+    onMount() {
+        this.renderTodos();
+        this.bindEvents();
+    }
+
+    addTodo(text) {
+        this.todos.push({ 
+            id: Date.now(), 
+            text, 
+            completed: false 
+        });
+        this.renderTodos();
+    }
+}</code></pre>
+                    </div>
+                </div>
+                <div class="demo-panel">
+                    <h4>🎮 Live Demo</h4>
+                    <div class="demo-controls">
+                        <button class="btn" id="init-todo-component">Initialize Component</button>
+                        <button class="btn warning" id="destroy-todo-component">Destroy Component</button>
+                    </div>
+                    <div class="demo-result">
+                        <div id="todo-component-container">
+                            Click "Initialize Component" to see the Todo app in action!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Delegation Example -->
+        <div class="example-section">
+            <div class="example-header">
+                ⚡ Advanced Event Delegation
+            </div>
+            <div class="example-content">
+                <div class="code-panel">
+                    <h4>💻 JavaScript Code</h4>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// Create delegation namespace
+const myNamespace = new MicroUI.DelegationNamespace();
+
+// Add middleware for logging
+myNamespace.addMiddleware('click', function(event, next) {
+    console.log('Click intercepted:', event.target);
+    next();
+});
+
+// Delegate events with namespace
+myNamespace.delegate('click', '.delegate-item', 
+    function(event) {
+        this.classList.toggle('clicked');
+    }
+);
+
+// Dynamic content - events still work!
+const newItem = document.createElement('div');
+newItem.className = 'delegate-item';
+newItem.textContent = 'Dynamic item';
+container.appendChild(newItem);</code></pre>
+                    </div>
+                </div>
+                <div class="demo-panel">
+                    <h4>🎮 Live Demo</h4>
+                    <div class="demo-controls">
+                        <button class="btn" id="init-delegation">Setup Delegation</button>
+                        <button class="btn success" id="add-delegate-item">Add Dynamic Item</button>
+                        <button class="btn warning" id="clear-delegate-items">Clear Items</button>
+                    </div>
+                    <div class="demo-result">
+                        <div class="delegate-demo" id="delegation-container">
+                            <div class="delegate-item">Click me - I'm delegated!</div>
+                            <div class="delegate-item">Me too - delegation works!</div>
+                            <div class="delegate-item">Even for multiple items!</div>
+                        </div>
+                        <div id="delegation-log" style="margin-top: 1rem; font-family: monospace; font-size: 0.8rem; background: #f7fafc; padding: 0.5rem; border-radius: 4px; max-height: 100px; overflow-y: auto;">
+                            Delegation log will appear here...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AJAX with Loading States -->
+        <div class="example-section">
+            <div class="example-header">
+                🌐 Advanced AJAX with Loading States
+            </div>
+            <div class="example-content">
+                <div class="code-panel">
+                    <h4>💻 JavaScript Code</h4>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// AJAX with loading states and error handling
+function loadUserData(userId) {
+    const loadingEl = MicroUI.$('.loading');
+    const resultEl = MicroUI.$('.result');
+    
+    // Show loading state
+    MicroUI.html(loadingEl, 'Loading user data...');
+    MicroUI.fadeIn(loadingEl, 200);
+    
+    return MicroUI.get(`https://jsonplaceholder.typicode.com/users/${userId}`)
+        .then(function(user) {
+            MicroUI.fadeOut(loadingEl, 200);
+            MicroUI.html(resultEl, `
+                &lt;h4&gt;${user.name}&lt;/h4&gt;
+                &lt;p&gt;Email: ${user.email}&lt;/p&gt;
+                &lt;p&gt;Company: ${user.company.name}&lt;/p&gt;
+            `);
+            MicroUI.fadeIn(resultEl, 300);
+        })
+        .catch(function(error) {
+            MicroUI.fadeOut(loadingEl, 200);
+            MicroUI.html(resultEl, `❌ Error: ${error.message}`);
+            MicroUI.fadeIn(resultEl, 300);
+        });
+}</code></pre>
+                    </div>
+                </div>
+                <div class="demo-panel">
+                    <h4>🎮 Live Demo</h4>
+                    <div class="demo-controls">
+                        <button class="btn" data-user-id="1">Load User 1</button>
+                        <button class="btn" data-user-id="2">Load User 2</button>
+                        <button class="btn" data-user-id="3">Load User 3</button>
+                        <button class="btn danger" data-user-id="999">Load Invalid User</button>
+                    </div>
+                    <div class="demo-result">
+                        <div class="ajax-loading" style="display: none; color: #764ba2; font-weight: bold;">
+                            Loading...
+                        </div>
+                        <div class="ajax-result">
+                            Click a button to load user data with advanced AJAX handling
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Handling with Validation -->
+        <div class="example-section">
+            <div class="example-header">
+                📝 Form Handling with Validation
+            </div>
+            <div class="example-content">
+                <div class="code-panel">
+                    <h4>💻 JavaScript Code</h4>
+                    <div class="code-block">
+                        <pre><code class="language-javascript">// Form validation with MicroUI
+function validateForm(formElement) {
+    const inputs = MicroUI.$$('input[required]', formElement);
+    let isValid = true;
+    
+    inputs.forEach(function(input) {
+        const value = input.value.trim();
+        const errorEl = MicroUI.$(`.error-${input.name}`);
+        
+        if (!value) {
+            MicroUI.addClass(input, 'error');
+            MicroUI.html(errorEl, 'This field is required');
+            MicroUI.fadeIn(errorEl, 200);
+            isValid = false;
+        } else {
+            MicroUI.removeClass(input, 'error');
+            MicroUI.fadeOut(errorEl, 200);
+        }
+    });
+    
+    return isValid;
+}
+
+// Handle form submission
+MicroUI.on('submit', '#demo-form', function(e) {
+    e.preventDefault();
+    
+    if (validateForm(this)) {
+        // Process form data
+        MicroUI.post('/api/contact', new FormData(this));
+    }
+});</code></pre>
+                    </div>
+                </div>
+                <div class="demo-panel">
+                    <h4>🎮 Live Demo</h4>
+                    <div class="demo-result">
+                        <form id="demo-form" style="max-width: 400px;">
+                            <div style="margin-bottom: 1rem;">
+                                <input type="text" name="name" placeholder="Your Name" required 
+                                       style="width: 100%; padding: 0.5rem; border: 2px solid #e2e8f0; border-radius: 4px;">
+                                <div class="error-name" style="color: #f56565; font-size: 0.8rem; display: none; margin-top: 0.25rem;"></div>
+                            </div>
+                            
+                            <div style="margin-bottom: 1rem;">
+                                <input type="email" name="email" placeholder="Your Email" required 
+                                       style="width: 100%; padding: 0.5rem; border: 2px solid #e2e8f0; border-radius: 4px;">
+                                <div class="error-email" style="color: #f56565; font-size: 0.8rem; display: none; margin-top: 0.25rem;"></div>
+                            </div>
+                            
+                            <div style="margin-bottom: 1rem;">
+                                <textarea name="message" placeholder="Your Message" required rows="3"
+                                          style="width: 100%; padding: 0.5rem; border: 2px solid #e2e8f0; border-radius: 4px; resize: vertical;"></textarea>
+                                <div class="error-message" style="color: #f56565; font-size: 0.8rem; display: none; margin-top: 0.25rem;"></div>
+                            </div>
+                            
+                            <button type="submit" class="btn">Submit Form</button>
+                        </form>
+                        
+                        <div id="form-result" style="margin-top: 1rem; padding: 1rem; background: #f7fafc; border-radius: 4px; display: none;">
+                            Form submission result will appear here...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load MicroUI -->
+    <script src="../dist/microui.min.js"></script>
+    
+    <script>
+        // Initialize when DOM is ready
+        MicroUI.ready(function() {
+            console.log('🚀 MicroUI Advanced Examples loaded!');
+
+            // Component System Demo
+            let todoComponent = null;
+
+            MicroUI.on('click', '#init-todo-component', function() {
+                const container = MicroUI.$('#todo-component-container');
+                
+                // Simple todo component simulation
+                MicroUI.html(container, `
+                    <div class="todo-app">
+                        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                            <input type="text" class="todo-input" placeholder="Add new todo..." 
+                                   style="flex: 1; padding: 0.5rem; border: 2px solid #e2e8f0; border-radius: 4px;">
+                            <button class="btn add-todo">Add</button>
+                        </div>
+                        <div class="todo-list"></div>
+                    </div>
+                `);
+
+                // Simulate component behavior
+                const todos = [
+                    { id: 1, text: 'Learn MicroUI basics', completed: true },
+                    { id: 2, text: 'Build awesome apps', completed: false },
+                    { id: 3, text: 'Share with the community', completed: false }
+                ];
+
+                function renderTodos() {
+                    const todoList = MicroUI.$('.todo-list', container);
+                    const html = todos.map(todo => `
+                        <div class="todo-item ${todo.completed ? 'completed' : ''}" data-id="${todo.id}">
+                            <input type="checkbox" ${todo.completed ? 'checked' : ''}>
+                            <span>${todo.text}</span>
+                            <button class="btn danger" style="margin-left: auto; padding: 0.25rem 0.5rem;">Delete</button>
+                        </div>
+                    `).join('');
+                    MicroUI.html(todoList, html);
+                }
+
+                // Event handlers for todo component
+                MicroUI.on('click', '.add-todo', function() {
+                    const input = MicroUI.$('.todo-input', container);
+                    const text = input.value.trim();
+                    if (text) {
+                        todos.push({ id: Date.now(), text, completed: false });
+                        input.value = '';
+                        renderTodos();
+                    }
+                });
+
+                MicroUI.on('change', '.todo-item input[type="checkbox"]', function() {
+                    const todoId = parseInt(this.closest('.todo-item').dataset.id);
+                    const todo = todos.find(t => t.id === todoId);
+                    if (todo) {
+                        todo.completed = this.checked;
+                        renderTodos();
+                    }
+                });
+
+                MicroUI.on('click', '.todo-item .btn.danger', function() {
+                    const todoId = parseInt(this.closest('.todo-item').dataset.id);
+                    const index = todos.findIndex(t => t.id === todoId);
+                    if (index !== -1) {
+                        todos.splice(index, 1);
+                        renderTodos();
+                    }
+                });
+
+                renderTodos();
+            });
+
+            MicroUI.on('click', '#destroy-todo-component', function() {
+                const container = MicroUI.$('#todo-component-container');
+                MicroUI.html(container, 'Component destroyed. Click "Initialize Component" to recreate.');
+            });
+
+            // Event Delegation Demo
+            let delegationNamespace = null;
+
+            MicroUI.on('click', '#init-delegation', function() {
+                const logEl = MicroUI.$('#delegation-log');
+                
+                // Simulate advanced delegation with logging
+                MicroUI.on('click', '.delegate-item', function(event) {
+                    this.classList.toggle('clicked');
+                    const log = logEl.innerHTML;
+                    logEl.innerHTML = `${new Date().toLocaleTimeString()}: Clicked "${this.textContent}"\n${log}`;
+                });
+
+                MicroUI.html(logEl, 'Delegation initialized! Click items to see logging...\n');
+            });
+
+            MicroUI.on('click', '#add-delegate-item', function() {
+                const container = MicroUI.$('#delegation-container');
+                const newItem = document.createElement('div');
+                newItem.className = 'delegate-item';
+                newItem.textContent = `Dynamic item ${Date.now()}`;
+                container.appendChild(newItem);
+            });
+
+            MicroUI.on('click', '#clear-delegate-items', function() {
+                const container = MicroUI.$('#delegation-container');
+                MicroUI.html(container, '<div class="delegate-item">Click me - I\'m delegated!</div>');
+                MicroUI.html(MicroUI.$('#delegation-log'), 'Items cleared. Delegation log reset.\n');
+            });
+
+            // Advanced AJAX Demo
+            MicroUI.on('click', '[data-user-id]', function() {
+                const userId = this.dataset.userId;
+                const loadingEl = MicroUI.$('.ajax-loading');
+                const resultEl = MicroUI.$('.ajax-result');
+                
+                // Show loading state
+                MicroUI.html(loadingEl, 'Loading user data... 🔄');
+                MicroUI.fadeIn(loadingEl, 200);
+                MicroUI.fadeOut(resultEl, 200);
+                
+                MicroUI.get(`https://jsonplaceholder.typicode.com/users/${userId}`)
+                    .then(function(user) {
+                        MicroUI.fadeOut(loadingEl, 200);
+                        MicroUI.html(resultEl, `
+                            <div style="border: 2px solid #48bb78; border-radius: 6px; padding: 1rem; background: #f0fff4;">
+                                <h4 style="color: #2d3748; margin-bottom: 0.5rem;">✅ ${user.name}</h4>
+                                <p><strong>Email:</strong> ${user.email}</p>
+                                <p><strong>Phone:</strong> ${user.phone}</p>
+                                <p><strong>Company:</strong> ${user.company.name}</p>
+                                <p><strong>Website:</strong> <a href="http://${user.website}" target="_blank">${user.website}</a></p>
+                            </div>
+                        `);
+                        MicroUI.fadeIn(resultEl, 300);
+                    })
+                    .catch(function(error) {
+                        MicroUI.fadeOut(loadingEl, 200);
+                        MicroUI.html(resultEl, `
+                            <div style="border: 2px solid #f56565; border-radius: 6px; padding: 1rem; background: #fffbfb;">
+                                <h4 style="color: #c53030;">❌ Error Loading User</h4>
+                                <p>${error.message || 'User not found'}</p>
+                                <p style="font-size: 0.9rem; color: #666;">This demonstrates error handling in AJAX requests.</p>
+                            </div>
+                        `);
+                        MicroUI.fadeIn(resultEl, 300);
+                    });
+            });
+
+            // Form Validation Demo
+            function validateForm(formElement) {
+                const inputs = MicroUI.$$('input[required], textarea[required]', formElement);
+                let isValid = true;
+                
+                inputs.forEach(function(input) {
+                    const value = input.value.trim();
+                    const errorEl = MicroUI.$(`.error-${input.name}`);
+                    
+                    if (!value) {
+                        input.style.borderColor = '#f56565';
+                        MicroUI.html(errorEl, 'This field is required');
+                        MicroUI.fadeIn(errorEl, 200);
+                        isValid = false;
+                    } else if (input.type === 'email' && !value.includes('@')) {
+                        input.style.borderColor = '#f56565';
+                        MicroUI.html(errorEl, 'Please enter a valid email address');
+                        MicroUI.fadeIn(errorEl, 200);
+                        isValid = false;
+                    } else {
+                        input.style.borderColor = '#48bb78';
+                        MicroUI.fadeOut(errorEl, 200);
+                    }
+                });
+                
+                return isValid;
+            }
+
+            MicroUI.on('submit', '#demo-form', function(e) {
+                e.preventDefault();
+                
+                const resultEl = MicroUI.$('#form-result');
+                
+                if (validateForm(this)) {
+                    // Simulate form submission
+                    MicroUI.html(resultEl, `
+                        <div style="color: #2d3748; border: 2px solid #48bb78; border-radius: 6px; padding: 1rem; background: #f0fff4;">
+                            <h4 style="color: #2f855a;">✅ Form Submitted Successfully!</h4>
+                            <p>In a real application, this would send data to your server.</p>
+                            <p><strong>Data that would be sent:</strong></p>
+                            <pre style="background: #e6fffa; padding: 0.5rem; border-radius: 4px; font-size: 0.8rem;">${JSON.stringify({
+                                name: this.name.value,
+                                email: this.email.value,
+                                message: this.message.value
+                            }, null, 2)}</pre>
+                        </div>
+                    `);
+                    MicroUI.fadeIn(resultEl, 300);
+                    
+                    // Reset form
+                    setTimeout(() => {
+                        this.reset();
+                        MicroUI.$$('input, textarea', this).forEach(input => {
+                            input.style.borderColor = '#e2e8f0';
+                        });
+                    }, 2000);
+                } else {
+                    MicroUI.html(resultEl, `
+                        <div style="color: #c53030; border: 2px solid #f56565; border-radius: 6px; padding: 1rem; background: #fffbfb;">
+                            <h4>❌ Form Validation Failed</h4>
+                            <p>Please fix the errors above and try again.</p>
+                        </div>
+                    `);
+                    MicroUI.fadeIn(resultEl, 300);
+                }
+            });
+
+            // Real-time validation
+            MicroUI.on('input', '#demo-form input, #demo-form textarea', function() {
+                const errorEl = MicroUI.$(`.error-${this.name}`);
+                if (this.value.trim()) {
+                    this.style.borderColor = '#e2e8f0';
+                    MicroUI.fadeOut(errorEl, 200);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
