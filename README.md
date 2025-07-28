@@ -255,17 +255,9 @@ jQuery (30KB gzipped):
 ## 📦 Installation
 
 ### 🚀 Quick Start
-```bash
-npm install microui
-```
 
-### 🚀 Quick Start
 ```html
-<!-- Development -->
-<script src="https://unpkg.com/microui@1.0.0/dist/microui.js"></script>
-
-<!-- Production -->
-<script src="https://unpkg.com/microui@1.0.0/dist/microui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@0.0.3-alpha/dist/microui.min.js"></script>
 ```
 
 ### 🚀 Quick Start
@@ -837,9 +829,9 @@ describe('DOM Utilities', () => {
 ## 💡 Examples
 
 ### 🚀 Quick Start
-- **[Interactive Demo Site](https://lam0819.github.io/microui)** - Complete showcase with all features
-- **[Basic Examples](examples/basic.html)** - Core functionality demonstrations  
-- **[Advanced Components](examples/advanced.html)** - Tabs, modals, dropdowns, accordions, and more
+- **[Interactive Demo Site](https://lam0819.github.io/MicroUI)** - Complete showcase with all features
+- **[Basic Examples](https://lam0819.github.io/MicroUI/examples/basic-interactive.html)** - Core functionality demonstrations  
+- **[Advanced Components](https://lam0819.github.io/MicroUI/examples/advanced-interactive.html)** - Tabs, modals, dropdowns, accordions, and more
 
 ### 🚀 Quick Start
 
@@ -1051,10 +1043,9 @@ Inspired by jQuery's simplicity and modern JavaScript best practices.
 
 ## 🔗 Links
 
-- [Documentation](https://microui.dev)
-- [GitHub Repository](https://github.com/lam0819/microui)
-- [NPM Package](https://www.npmjs.com/package/microui)
-- [Examples](https://microui.dev/examples)
+- [Documentation](https://lam0819.github.io/MicroUI)
+- [GitHub Repository](https://github.com/lam0819/MicroUI)
+- [Examples](https://lam0819.github.io/MicroUI)
 - [Changelog](CHANGELOG.md)
 
 ---
