@@ -2,10 +2,10 @@
 
 <div align="center">
   
-  [[Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/yourusername/microui)
-  [[Size](https://img.shields.io/badge/gzipped-5.1KB-brightgreen.svg)](https://github.com/yourusername/microui)
-  [[Vanilla JS](https://img.shields.io/badge/vanilla-JavaScript-yellow.svg)](https://github.com/yourusername/microui)
-  [[License](https://img.shields.io/badge/license-MIT-purple.svg)](https://github.com/yourusername/microui)
+  [[Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/lam0819/microui)
+  [[Size](https://img.shields.io/badge/gzipped-5.1KB-brightgreen.svg)](https://github.com/lam0819/microui)
+  [[Vanilla JS](https://img.shields.io/badge/vanilla-JavaScript-yellow.svg)](https://github.com/lam0819/microui)
+  [[License](https://img.shields.io/badge/license-MIT-purple.svg)](https://github.com/lam0819/microui)
   
   **A lightweight, pure vanilla JavaScript utility library that makes DOM manipulation and event handling simple and efficient.**
 
@@ -259,7 +259,7 @@ npm install microui
 ```
 
 ### Download
-Download the latest release from [GitHub Releases](https://github.com/yourusername/microui/releases)
+Download the latest release from [GitHub Releases](https://github.com/lam0819/microui/releases)
 
 ## 🏃 Quick Start
 
@@ -711,7 +711,7 @@ microui/
 ### Setup
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/microui.git
+git clone https://github.com/lam0819/microui.git
 cd microui
 
 # Install dependencies
@@ -1035,14 +1035,14 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🙏 Credits
 
-Created by [Your Name](https://github.com/yourusername)
+Created by [Your Name](https://github.com/lam0819)
 
 Inspired by jQuery's simplicity and modern JavaScript best practices.
 
 ## 🔗 Links
 
 - [Documentation](https://microui.dev)
-- [GitHub Repository](https://github.com/yourusername/microui)
+- [GitHub Repository](https://github.com/lam0819/microui)
 - [NPM Package](https://www.npmjs.com/package/microui)
 - [Examples](https://microui.dev/examples)
 - [Changelog](CHANGELOG.md)
