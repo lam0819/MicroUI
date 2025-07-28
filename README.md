@@ -3,7 +3,7 @@
 <div align="center">
   
   [[Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/lam0819/microui)
-  [[Size](https://img.shields.io/badge/gzipped-5.1KB-brightgreen.svg)](https://github.com/lam0819/microui)
+  [[Size](https://img.shields.io/badge/gzipped-5.2KB-brightgreen.svg)](https://github.com/lam0819/microui)
   [[Vanilla JS](https://img.shields.io/badge/vanilla-JavaScript-yellow.svg)](https://github.com/lam0819/microui)
   [[License](https://img.shields.io/badge/license-MIT-purple.svg)](https://github.com/lam0819/microui)
   
@@ -18,7 +18,7 @@
 ## 🚀 Features
 
 - **Pure Vanilla JS**: Zero dependencies, no frameworks, just native JavaScript
-- **Ultra Lightweight**: Only 18KB minified (5.1KB gzipped) - 6x smaller than jQuery
+- **Ultra Lightweight**: Only 18.6KB minified (5.2KB gzipped) - 6x smaller than jQuery
 - **Modern**: Built with ES6+ features and Promise-based APIs
 - **Fast**: Event delegation by default, optimized for performance
 - **Complete**: Includes DOM manipulation, AJAX, animations, components, and more
@@ -95,7 +95,7 @@ MicroUI is built entirely with native browser APIs, making it:
 
 | Feature | MicroUI | jQuery | React | Alpine.js | Vanilla JS |
 |---------|---------|--------|-------|-----------|------------|
-| **Bundle Size** | 5.1KB gzipped | 30KB gzipped | 42KB+ gzipped | 15KB gzipped | 0KB |
+| **Bundle Size** | 5.2KB gzipped | 30KB gzipped | 42KB+ gzipped | 15KB gzipped | 0KB |
 | **Learning Curve** | ⭐⭐ Easy | ⭐⭐ Easy | ⭐⭐⭐⭐⭐ Steep | ⭐⭐⭐ Medium | ⭐⭐⭐⭐ Hard |
 | **Build Required** | ❌ Optional | ❌ No | ✅ Yes | ❌ No | ❌ No |
 | **Modern Syntax** | ✅ ES6+ | ❌ ES5 | ✅ JSX | ✅ ES6+ | ✅ Native |
