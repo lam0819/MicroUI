@@ -9,7 +9,7 @@
   
   **A lightweight, pure vanilla JavaScript utility library that makes DOM manipulation and event handling simple and efficient.**
 
-  **🌟 [Live Demo & Full Documentation](https://your-username.github.io/microui) 🌟**
+  **🌟 [Live Demo & Full Documentation](https://lam0819.github.io/microui) 🌟**
 
   [Why Vanilla JS?](#why-vanilla-js) • [Performance](#performance) • [Examples](#examples) • [API Reference](#api-reference) • [Advanced Examples](examples/advanced.html) • [Contributing](#contributing)
 
@@ -824,7 +824,7 @@ describe('DOM Utilities', () => {
 ## 💡 Examples
 
 ### 🌐 Live Examples
-- **[Interactive Demo Site](https://your-username.github.io/microui)** - Complete showcase with all features
+- **[Interactive Demo Site](https://lam0819.github.io/microui)** - Complete showcase with all features
 - **[Basic Examples](examples/basic.html)** - Core functionality demonstrations  
 - **[Advanced Components](examples/advanced.html)** - Tabs, modals, dropdowns, accordions, and more
 
