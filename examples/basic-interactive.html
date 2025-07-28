@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MicroUI - Interactive Code Examples</title>
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -72,15 +74,33 @@
         }
 
         .code-block {
-            background: #1a202c;
-            padding: 1rem;
-            border-radius: 6px;
-            margin: 1rem 0;
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            overflow-x: auto;
+            background: #2d3748 !important;
+            padding: 1.5rem !important;
+            border-radius: 8px !important;
+            margin: 1rem 0 !important;
+            font-family: 'SFMono-Regular', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', monospace !important;
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+            overflow-x: auto !important;
+            border: 1px solid #4a5568 !important;
         }
+
+        .code-block code {
+            background: none !important;
+            padding: 0 !important;
+            font-size: inherit !important;
+            color: #f7fafc !important;
+        }
+
+        /* Override Prism theme for our dark theme */
+        .code-block .token.comment { color: #68d391 !important; }
+        .code-block .token.string { color: #fbb6ce !important; }
+        .code-block .token.keyword { color: #90cdf4 !important; font-weight: bold !important; }
+        .code-block .token.function { color: #fbd38d !important; }
+        .code-block .token.property { color: #fcd34d !important; }
+        .code-block .token.number { color: #fb7185 !important; }
+        .code-block .token.operator { color: #e2e8f0 !important; }
+        .code-block .token.punctuation { color: #e2e8f0 !important; }
 
         .demo-panel {
             padding: 1.5rem;
@@ -161,12 +181,6 @@
             border: 2px solid #e53e3e;
         }
 
-        .syntax-js { color: #f7fafc; }
-        .syntax-comment { color: #68d391; font-style: italic; }
-        .syntax-string { color: #fbb6ce; }
-        .syntax-keyword { color: #90cdf4; font-weight: bold; }
-        .syntax-function { color: #fbd38d; }
-
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
@@ -232,6 +246,8 @@
             color: white;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </head>
 <body>
     <div class="header">
@@ -244,9 +260,9 @@
         
         <div class="navigation">
             <div class="nav-links">
-                <a href="./" class="nav-link">Examples Home</a>
-                <a href="basic.html" class="nav-link active">Basic Examples</a>
-                <a href="advanced.html" class="nav-link">Advanced Examples</a>
+                <a href="index.html" class="nav-link">Examples Home</a>
+                <a href="basic-interactive.html" class="nav-link active">Basic Examples</a>
+                <a href="advanced-interactive.html" class="nav-link">Advanced Examples</a>
                 <a href="test.html" class="nav-link">Test Playground</a>
             </div>
         </div>
@@ -260,18 +276,18 @@
                 <div class="code-panel">
                     <h4>💻 JavaScript Code</h4>
                     <div class="code-block">
-<span class="syntax-comment">// Select elements using CSS selectors</span>
-<span class="syntax-keyword">const</span> element = <span class="syntax-function">MicroUI.$</span>(<span class="syntax-string">'#demo-element'</span>);
-<span class="syntax-keyword">const</span> buttons = <span class="syntax-function">MicroUI.$$</span>(<span class="syntax-string">'.demo-btn'</span>);
+                        <pre><code class="language-javascript">// Select elements using CSS selectors
+const element = MicroUI.$('#demo-element');
+const buttons = MicroUI.$$('.demo-btn');
 
-<span class="syntax-comment">// Change text content</span>
-<span class="syntax-function">MicroUI.html</span>(element, <span class="syntax-string">'New content!'</span>);
+// Change text content
+MicroUI.html(element, 'New content!');
 
-<span class="syntax-comment">// Add CSS classes</span>
-<span class="syntax-function">MicroUI.addClass</span>(element, <span class="syntax-string">'highlight'</span>);
+// Add CSS classes
+MicroUI.addClass(element, 'highlight');
 
-<span class="syntax-comment">// Toggle classes</span>
-<span class="syntax-function">MicroUI.toggleClass</span>(element, <span class="syntax-string">'success'</span>);
+// Toggle classes
+MicroUI.toggleClass(element, 'success');</code></pre>
                     </div>
                 </div>
                 <div class="demo-panel">
@@ -300,19 +316,19 @@
                 <div class="code-panel">
                     <h4>💻 JavaScript Code</h4>
                     <div class="code-block">
-<span class="syntax-comment">// Simple event listener</span>
-<span class="syntax-function">MicroUI.on</span>(<span class="syntax-string">'click'</span>, <span class="syntax-string">'.event-btn'</span>, <span class="syntax-keyword">function</span>() {
-    <span class="syntax-function">alert</span>(<span class="syntax-string">'Button clicked!'</span>);
+                        <pre><code class="language-javascript">// Simple event listener
+MicroUI.on('click', '.event-btn', function() {
+    alert('Button clicked!');
 });
 
-<span class="syntax-comment">// Event with data</span>
-<span class="syntax-function">MicroUI.on</span>(<span class="syntax-string">'mouseover'</span>, <span class="syntax-string">'.hover-demo'</span>, <span class="syntax-keyword">function</span>(e) {
-    <span class="syntax-keyword">this</span>.textContent = <span class="syntax-string">'Hovering!'</span>;
+// Event with element interaction
+MicroUI.on('mouseover', '.hover-demo', function(e) {
+    this.textContent = 'Hovering!';
 });
 
-<span class="syntax-function">MicroUI.on</span>(<span class="syntax-string">'mouseout'</span>, <span class="syntax-string">'.hover-demo'</span>, <span class="syntax-keyword">function</span>(e) {
-    <span class="syntax-keyword">this</span>.textContent = <span class="syntax-string">'Hover over me'</span>;
-});
+MicroUI.on('mouseout', '.hover-demo', function(e) {
+    this.textContent = 'Hover over me';
+});</code></pre>
                     </div>
                 </div>
                 <div class="demo-panel">
@@ -340,20 +356,20 @@
                 <div class="code-panel">
                     <h4>💻 JavaScript Code</h4>
                     <div class="code-block">
-<span class="syntax-comment">// Fade in animation</span>
-<span class="syntax-function">MicroUI.fadeIn</span>(element, <span class="syntax-string">500</span>);
+                        <pre><code class="language-javascript">// Fade in animation
+MicroUI.fadeIn(element, 500);
 
-<span class="syntax-comment">// Fade out animation</span>
-<span class="syntax-function">MicroUI.fadeOut</span>(element, <span class="syntax-string">500</span>);
+// Fade out animation
+MicroUI.fadeOut(element, 500);
 
-<span class="syntax-comment">// Slide down effect</span>
-<span class="syntax-function">MicroUI.slideDown</span>(element, <span class="syntax-string">300</span>);
+// Slide down effect
+MicroUI.slideDown(element, 300);
 
-<span class="syntax-comment">// Chain animations with callbacks</span>
-<span class="syntax-function">MicroUI.fadeOut</span>(element, <span class="syntax-string">200</span>, <span class="syntax-keyword">function</span>() {
-    <span class="syntax-function">MicroUI.html</span>(<span class="syntax-keyword">this</span>, <span class="syntax-string">'Content changed!'</span>);
-    <span class="syntax-function">MicroUI.fadeIn</span>(<span class="syntax-keyword">this</span>, <span class="syntax-string">200</span>);
-});
+// Chain animations with callbacks
+MicroUI.fadeOut(element, 200, function() {
+    MicroUI.html(this, 'Content changed!');
+    MicroUI.fadeIn(this, 200);
+});</code></pre>
                     </div>
                 </div>
                 <div class="demo-panel">
@@ -382,22 +398,22 @@
                 <div class="code-panel">
                     <h4>💻 JavaScript Code</h4>
                     <div class="code-block">
-<span class="syntax-comment">// Simple GET request</span>
-<span class="syntax-function">MicroUI.get</span>(<span class="syntax-string">'https://jsonplaceholder.typicode.com/posts/1'</span>)
-    .<span class="syntax-function">then</span>(<span class="syntax-keyword">function</span>(data) {
-        <span class="syntax-function">console.log</span>(<span class="syntax-string">'Received:'</span>, data);
+                        <pre><code class="language-javascript">// Simple GET request
+MicroUI.get('https://jsonplaceholder.typicode.com/posts/1')
+    .then(function(data) {
+        console.log('Received:', data);
     })
-    .<span class="syntax-function">catch</span>(<span class="syntax-keyword">function</span>(error) {
-        <span class="syntax-function">console.error</span>(<span class="syntax-string">'Error:'</span>, error);
+    .catch(function(error) {
+        console.error('Error:', error);
     });
 
-<span class="syntax-comment">// POST request with data</span>
-<span class="syntax-function">MicroUI.post</span>(<span class="syntax-string">'https://jsonplaceholder.typicode.com/posts'</span>, {
-    title: <span class="syntax-string">'MicroUI Test'</span>,
-    body: <span class="syntax-string">'This is a test post'</span>
-}).<span class="syntax-function">then</span>(<span class="syntax-keyword">function</span>(data) {
-    <span class="syntax-function">console.log</span>(<span class="syntax-string">'Created:'</span>, data);
-});
+// POST request with data
+MicroUI.post('https://jsonplaceholder.typicode.com/posts', {
+    title: 'MicroUI Test',
+    body: 'This is a test post'
+}).then(function(data) {
+    console.log('Created:', data);
+});</code></pre>
                     </div>
                 </div>
                 <div class="demo-panel">
@@ -485,26 +501,18 @@
 
             MicroUI.on('click', '#slide-down-btn', function() {
                 const element = MicroUI.$('#animation-demo');
-                // Simulate slide down with opacity and height
-                element.style.height = '0px';
-                element.style.overflow = 'hidden';
-                element.style.transition = 'height 0.3s ease, opacity 0.3s ease';
-                
-                setTimeout(() => {
-                    element.style.height = 'auto';
-                    element.style.opacity = '1';
-                }, 10);
+                MicroUI.slideDown(element, 300);
             });
 
             MicroUI.on('click', '#animate-chain-btn', function() {
                 const element = MicroUI.$('#animation-demo');
                 MicroUI.fadeOut(element, 200, function() {
-                    MicroUI.html(this, 'Content changed with chained animation! ✨');
-                    MicroUI.addClass(this, 'success');
-                    MicroUI.fadeIn(this, 200, function() {
+                    MicroUI.html(element, 'Content changed with chained animation! ✨');
+                    MicroUI.addClass(element, 'success');
+                    MicroUI.fadeIn(element, 200, function() {
                         setTimeout(() => {
-                            MicroUI.removeClass(this, 'success');
-                            MicroUI.html(this, 'I can be animated with MicroUI!');
+                            MicroUI.removeClass(element, 'success');
+                            MicroUI.html(element, 'I can be animated with MicroUI!');
                         }, 2000);
                     });
                 });

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MicroUI - Advanced Interactive Examples</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -180,12 +181,6 @@
             margin: 0.5rem 0;
         }
 
-        .syntax-js { color: #f7fafc; }
-        .syntax-comment { color: #68d391; font-style: italic; }
-        .syntax-string { color: #fbb6ce; }
-        .syntax-keyword { color: #90cdf4; font-weight: bold; }
-        .syntax-function { color: #fbd38d; }
-
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
@@ -275,7 +270,40 @@
             background: #bee3f8;
             border: 2px solid #3182ce;
         }
+
+        /* Code block styling for Prism.js */
+        .code-block {
+            background: #2d3748 !important;
+            border-radius: 8px !important;
+            padding: 1.5rem !important;
+            margin: 1rem 0 !important;
+            font-family: 'SFMono-Regular', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', monospace !important;
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+            overflow-x: auto !important;
+            border: 1px solid #4a5568 !important;
+        }
+
+        .code-block code {
+            background: none !important;
+            padding: 0 !important;
+            font-size: inherit !important;
+            color: #f7fafc !important;
+        }
+
+        /* Override Prism theme for our dark theme */
+        .code-block .token.comment { color: #68d391 !important; }
+        .code-block .token.string { color: #fbb6ce !important; }
+        .code-block .token.keyword { color: #90cdf4 !important; font-weight: bold !important; }
+        .code-block .token.function { color: #fbd38d !important; }
+        .code-block .token.property { color: #fcd34d !important; }
+        .code-block .token.number { color: #fb7185 !important; }
+        .code-block .token.operator { color: #e2e8f0 !important; }
+        .code-block .token.punctuation { color: #e2e8f0 !important; }
+        .code-block .token.method { color: #a78bfa !important; }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </head>
 <body>
     <div class="header">
@@ -287,8 +315,8 @@
         <a href="../" class="back-link">← Back to Documentation</a>
         
         <div class="navigation">
-            <div class="nav-links">
-                <a href="./" class="nav-link">Examples Home</a>
+                        <div class="nav-links">
+                <a href="index.html" class="nav-link">Examples Home</a>
                 <a href="basic-interactive.html" class="nav-link">Basic Examples</a>
                 <a href="advanced-interactive.html" class="nav-link active">Advanced Examples</a>
                 <a href="test.html" class="nav-link">Test Playground</a>
@@ -304,38 +332,38 @@
                 <div class="code-panel">
                     <h4>💻 JavaScript Code</h4>
                     <div class="code-block">
-<span class="syntax-comment">// Define a Todo component</span>
-<span class="syntax-keyword">class</span> <span class="syntax-function">TodoComponent</span> <span class="syntax-keyword">extends</span> MicroUI.Component {
-    <span class="syntax-function">constructor</span>(element, options) {
-        <span class="syntax-keyword">super</span>(element, options);
-        <span class="syntax-keyword">this</span>.todos = options.todos || [];
+                        <pre><code class="language-javascript">// Define a Todo component
+class TodoComponent extends MicroUI.Component {
+    constructor(element, options) {
+        super(element, options);
+        this.todos = options.todos || [];
     }
 
-    <span class="syntax-function">template</span>() {
-        <span class="syntax-keyword">return</span> <span class="syntax-string">`
+    template() {
+        return `
             &lt;div class="todo-app"&gt;
                 &lt;input type="text" class="todo-input" 
                        placeholder="Add new todo..."&gt;
                 &lt;button class="btn add-todo"&gt;Add&lt;/button&gt;
                 &lt;div class="todo-list"&gt;&lt;/div&gt;
             &lt;/div&gt;
-        `</span>;
+        `;
     }
 
-    <span class="syntax-function">onMount</span>() {
-        <span class="syntax-keyword">this</span>.renderTodos();
-        <span class="syntax-keyword">this</span>.bindEvents();
+    onMount() {
+        this.renderTodos();
+        this.bindEvents();
     }
 
-    <span class="syntax-function">addTodo</span>(text) {
-        <span class="syntax-keyword">this</span>.todos.push({ 
+    addTodo(text) {
+        this.todos.push({ 
             id: Date.now(), 
             text, 
-            completed: <span class="syntax-keyword">false</span> 
+            completed: false 
         });
-        <span class="syntax-keyword">this</span>.renderTodos();
+        this.renderTodos();
     }
-}
+}</code></pre>
                     </div>
                 </div>
                 <div class="demo-panel">
@@ -362,27 +390,27 @@
                 <div class="code-panel">
                     <h4>💻 JavaScript Code</h4>
                     <div class="code-block">
-<span class="syntax-comment">// Create delegation namespace</span>
-<span class="syntax-keyword">const</span> myNamespace = <span class="syntax-keyword">new</span> <span class="syntax-function">MicroUI.DelegationNamespace</span>();
+                        <pre><code class="language-javascript">// Create delegation namespace
+const myNamespace = new MicroUI.DelegationNamespace();
 
-<span class="syntax-comment">// Add middleware for logging</span>
-myNamespace.<span class="syntax-function">addMiddleware</span>(<span class="syntax-string">'click'</span>, <span class="syntax-keyword">function</span>(event, next) {
-    <span class="syntax-function">console.log</span>(<span class="syntax-string">'Click intercepted:'</span>, event.target);
-    <span class="syntax-function">next</span>();
+// Add middleware for logging
+myNamespace.addMiddleware('click', function(event, next) {
+    console.log('Click intercepted:', event.target);
+    next();
 });
 
-<span class="syntax-comment">// Delegate events with namespace</span>
-myNamespace.<span class="syntax-function">delegate</span>(<span class="syntax-string">'click'</span>, <span class="syntax-string">'.delegate-item'</span>, 
-    <span class="syntax-keyword">function</span>(event) {
-        <span class="syntax-keyword">this</span>.classList.toggle(<span class="syntax-string">'clicked'</span>);
+// Delegate events with namespace
+myNamespace.delegate('click', '.delegate-item', 
+    function(event) {
+        this.classList.toggle('clicked');
     }
 );
 
-<span class="syntax-comment">// Dynamic content - events still work!</span>
-<span class="syntax-keyword">const</span> newItem = <span class="syntax-function">document.createElement</span>(<span class="syntax-string">'div'</span>);
-newItem.className = <span class="syntax-string">'delegate-item'</span>;
-newItem.textContent = <span class="syntax-string">'Dynamic item'</span>;
-container.<span class="syntax-function">appendChild</span>(newItem);
+// Dynamic content - events still work!
+const newItem = document.createElement('div');
+newItem.className = 'delegate-item';
+newItem.textContent = 'Dynamic item';
+container.appendChild(newItem);</code></pre>
                     </div>
                 </div>
                 <div class="demo-panel">
@@ -415,31 +443,31 @@ container.<span class="syntax-function">appendChild</span>(newItem);
                 <div class="code-panel">
                     <h4>💻 JavaScript Code</h4>
                     <div class="code-block">
-<span class="syntax-comment">// AJAX with loading states and error handling</span>
-<span class="syntax-keyword">function</span> <span class="syntax-function">loadUserData</span>(userId) {
-    <span class="syntax-keyword">const</span> loadingEl = <span class="syntax-function">MicroUI.$</span>(<span class="syntax-string">'.loading'</span>);
-    <span class="syntax-keyword">const</span> resultEl = <span class="syntax-function">MicroUI.$</span>(<span class="syntax-string">'.result'</span>);
+                        <pre><code class="language-javascript">// AJAX with loading states and error handling
+function loadUserData(userId) {
+    const loadingEl = MicroUI.$('.loading');
+    const resultEl = MicroUI.$('.result');
     
-    <span class="syntax-comment">// Show loading state</span>
-    <span class="syntax-function">MicroUI.html</span>(loadingEl, <span class="syntax-string">'Loading user data...'</span>);
-    <span class="syntax-function">MicroUI.fadeIn</span>(loadingEl, <span class="syntax-string">200</span>);
+    // Show loading state
+    MicroUI.html(loadingEl, 'Loading user data...');
+    MicroUI.fadeIn(loadingEl, 200);
     
-    <span class="syntax-keyword">return</span> <span class="syntax-function">MicroUI.get</span>(<span class="syntax-string">`https://jsonplaceholder.typicode.com/users/</span><span class="syntax-keyword">${</span>userId<span class="syntax-keyword">}</span><span class="syntax-string">`</span>)
-        .<span class="syntax-function">then</span>(<span class="syntax-keyword">function</span>(user) {
-            <span class="syntax-function">MicroUI.fadeOut</span>(loadingEl, <span class="syntax-string">200</span>);
-            <span class="syntax-function">MicroUI.html</span>(resultEl, <span class="syntax-string">`
-                &lt;h4&gt;</span><span class="syntax-keyword">${</span>user.name<span class="syntax-keyword">}</span><span class="syntax-string">&lt;/h4&gt;
-                &lt;p&gt;Email: </span><span class="syntax-keyword">${</span>user.email<span class="syntax-keyword">}</span><span class="syntax-string">&lt;/p&gt;
-                &lt;p&gt;Company: </span><span class="syntax-keyword">${</span>user.company.name<span class="syntax-keyword">}</span><span class="syntax-string">&lt;/p&gt;
-            `</span>);
-            <span class="syntax-function">MicroUI.fadeIn</span>(resultEl, <span class="syntax-string">300</span>);
+    return MicroUI.get(`https://jsonplaceholder.typicode.com/users/${userId}`)
+        .then(function(user) {
+            MicroUI.fadeOut(loadingEl, 200);
+            MicroUI.html(resultEl, `
+                &lt;h4&gt;${user.name}&lt;/h4&gt;
+                &lt;p&gt;Email: ${user.email}&lt;/p&gt;
+                &lt;p&gt;Company: ${user.company.name}&lt;/p&gt;
+            `);
+            MicroUI.fadeIn(resultEl, 300);
         })
-        .<span class="syntax-function">catch</span>(<span class="syntax-keyword">function</span>(error) {
-            <span class="syntax-function">MicroUI.fadeOut</span>(loadingEl, <span class="syntax-string">200</span>);
-            <span class="syntax-function">MicroUI.html</span>(resultEl, <span class="syntax-string">`❌ Error: </span><span class="syntax-keyword">${</span>error.message<span class="syntax-keyword">}</span><span class="syntax-string">`</span>);
-            <span class="syntax-function">MicroUI.fadeIn</span>(resultEl, <span class="syntax-string">300</span>);
+        .catch(function(error) {
+            MicroUI.fadeOut(loadingEl, 200);
+            MicroUI.html(resultEl, `❌ Error: ${error.message}`);
+            MicroUI.fadeIn(resultEl, 300);
         });
-}
+}</code></pre>
                     </div>
                 </div>
                 <div class="demo-panel">
@@ -471,38 +499,38 @@ container.<span class="syntax-function">appendChild</span>(newItem);
                 <div class="code-panel">
                     <h4>💻 JavaScript Code</h4>
                     <div class="code-block">
-<span class="syntax-comment">// Form validation with MicroUI</span>
-<span class="syntax-keyword">function</span> <span class="syntax-function">validateForm</span>(formElement) {
-    <span class="syntax-keyword">const</span> inputs = <span class="syntax-function">MicroUI.$$</span>(<span class="syntax-string">'input[required]'</span>, formElement);
-    <span class="syntax-keyword">let</span> isValid = <span class="syntax-keyword">true</span>;
+                        <pre><code class="language-javascript">// Form validation with MicroUI
+function validateForm(formElement) {
+    const inputs = MicroUI.$$('input[required]', formElement);
+    let isValid = true;
     
-    inputs.<span class="syntax-function">forEach</span>(<span class="syntax-keyword">function</span>(input) {
-        <span class="syntax-keyword">const</span> value = input.value.trim();
-        <span class="syntax-keyword">const</span> errorEl = <span class="syntax-function">MicroUI.$</span>(<span class="syntax-string">`.error-</span><span class="syntax-keyword">${</span>input.name<span class="syntax-keyword">}</span><span class="syntax-string">`</span>);
+    inputs.forEach(function(input) {
+        const value = input.value.trim();
+        const errorEl = MicroUI.$(`.error-${input.name}`);
         
-        <span class="syntax-keyword">if</span> (!value) {
-            <span class="syntax-function">MicroUI.addClass</span>(input, <span class="syntax-string">'error'</span>);
-            <span class="syntax-function">MicroUI.html</span>(errorEl, <span class="syntax-string">'This field is required'</span>);
-            <span class="syntax-function">MicroUI.fadeIn</span>(errorEl, <span class="syntax-string">200</span>);
-            isValid = <span class="syntax-keyword">false</span>;
-        } <span class="syntax-keyword">else</span> {
-            <span class="syntax-function">MicroUI.removeClass</span>(input, <span class="syntax-string">'error'</span>);
-            <span class="syntax-function">MicroUI.fadeOut</span>(errorEl, <span class="syntax-string">200</span>);
+        if (!value) {
+            MicroUI.addClass(input, 'error');
+            MicroUI.html(errorEl, 'This field is required');
+            MicroUI.fadeIn(errorEl, 200);
+            isValid = false;
+        } else {
+            MicroUI.removeClass(input, 'error');
+            MicroUI.fadeOut(errorEl, 200);
         }
     });
     
-    <span class="syntax-keyword">return</span> isValid;
+    return isValid;
 }
 
-<span class="syntax-comment">// Handle form submission</span>
-<span class="syntax-function">MicroUI.on</span>(<span class="syntax-string">'submit'</span>, <span class="syntax-string">'#demo-form'</span>, <span class="syntax-keyword">function</span>(e) {
-    e.<span class="syntax-function">preventDefault</span>();
+// Handle form submission
+MicroUI.on('submit', '#demo-form', function(e) {
+    e.preventDefault();
     
-    <span class="syntax-keyword">if</span> (<span class="syntax-function">validateForm</span>(<span class="syntax-keyword">this</span>)) {
-        <span class="syntax-comment">// Process form data</span>
-        <span class="syntax-function">MicroUI.post</span>(<span class="syntax-string">'/api/contact'</span>, <span class="syntax-keyword">new</span> <span class="syntax-function">FormData</span>(<span class="syntax-keyword">this</span>));
+    if (validateForm(this)) {
+        // Process form data
+        MicroUI.post('/api/contact', new FormData(this));
     }
-});
+});</code></pre>
                     </div>
                 </div>
                 <div class="demo-panel">
