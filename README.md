@@ -194,7 +194,7 @@ MicroUI delivers exceptional performance through modern optimization techniques:
 # Production Build Sizes (Automated via GitHub Actions)
 Original:     ~75KB (source code)
 Minified:     18KB (75% reduction)
-Gzipped:      5.1KB (93% reduction)
+Gzipped:      5.2KB (93% reduction)
 
 # Comparison with Popular Libraries (Gzipped)
 jQuery 3.7:   30KB (5.8x larger)
@@ -213,7 +213,7 @@ Alpine.js:    15KB (2.9x larger)
 ### Performance Philosophy
 MicroUI prioritizes performance through:
 - **Zero Dependencies**: No framework overhead or initialization cost
-- **Small Bundle Size**: 5.1KB gzipped means faster downloads and parsing
+- **Small Bundle Size**: 5.2KB gzipped means faster downloads and parsing
 - **Native JavaScript**: Direct browser API access without abstractions
 - **Event Delegation**: Efficient event handling for dynamic content
 - **Minimal Overhead**: Direct DOM manipulation without virtual DOM diffing
@@ -221,7 +221,7 @@ MicroUI prioritizes performance through:
 ### Network Performance Impact
 ```bash
 # Download time on different connections
-MicroUI (5.1KB gzipped):
+MicroUI (5.2KB gzipped):
   - Fast 3G: ~51ms
   - Slow 3G: ~170ms
   - 2G: ~680ms
