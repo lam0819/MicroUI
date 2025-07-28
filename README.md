@@ -18,12 +18,8 @@
 
 ### 🚀 Quick Start
 
-```bash
-npm install microui
-```
-
 ```html
-<script src="https://unpkg.com/microui@latest/dist/microui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@0.0.3-alpha/dist/microui.min.js"></script>
 ```
 
 ### 🎮 [**Live Demo & Documentation**](https://lam0819.github.io/MicroUI) | 📚 [**API Reference**](#api-reference) | 🧪 [**Interactive Examples**](https://lam0819.github.io/MicroUI/examples/)
