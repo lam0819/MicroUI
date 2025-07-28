@@ -7,7 +7,7 @@
 MicroUI is a production-ready vanilla JavaScript library that provides jQuery-like functionality with modern ES6+ features. It's designed to be the perfect middle ground between heavy frameworks and raw vanilla JavaScript.
 
 ### Key Statistics
-- **Size**: 18KB minified, 5.1KB gzipped
+- **Size**: 18KB minified, 5.2KB gzipped
 - **Performance**: 5.8x smaller than jQuery, 2.5x smaller than React
 - **Tests**: 72 comprehensive tests with 100% passing rate
 - **Dependencies**: Zero - pure vanilla JavaScript
@@ -163,7 +163,7 @@ npm run lint         # Code quality checks
 ### Generated Files
 - **UMD Build**: `dist/microui.js` (48.6KB)
 - **Minified**: `dist/microui.min.js` (18.2KB)
-- **Gzipped**: `dist/microui.min.js.gz` (5.1KB)
+- **Gzipped**: `dist/microui.min.js.gz` (5.2KB)
 - **ES Modules**: `dist/microui.esm.js` (45.2KB)
 - **Build Report**: `dist/build-report.json` (size analysis)
 
@@ -186,7 +186,7 @@ npm run lint         # Code quality checks
 ### Bundle Size
 - **Tree Shaking**: Import only needed modules
 - **Minification**: Terser for optimal compression
-- **Gzip Compression**: 93% size reduction (75KB → 5.1KB)
+- **Gzip Compression**: 93% size reduction (75KB → 5.2KB)
 
 ### Runtime Performance
 - **Event Delegation**: Automatic delegation for all events
@@ -260,7 +260,7 @@ MicroUI.component('todo-item', {
 
 | Feature | MicroUI | jQuery | React | Alpine.js |
 |---------|---------|--------|-------|-----------|
-| Bundle Size (gzipped) | 5.1KB | 30KB | 13KB | 15KB |
+| Bundle Size (gzipped) | 5.2KB | 30KB | 13KB | 15KB |
 | Dependencies | 0 | 0 | Many | 0 |
 | Learning Curve | Low | Low | High | Medium |
 | Component System | Yes | No | Yes | Yes |
