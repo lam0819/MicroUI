@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroUI Examples - Interactive Demos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .example-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .example-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .example-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .features li {
+            padding: 0.25rem 0;
+            color: #555;
+        }
+
+        .features li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            margin-left: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .stats {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .stat {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎮 MicroUI Examples</h1>
+        <p>Interactive demos showcasing MicroUI's capabilities</p>
+    </div>
+
+    <div class="container">
+        <a href="../" class="back-link">← Back to Documentation</a>
+
+        <div class="stats">
+            <h2>Library Stats</h2>
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">5.2KB</div>
+                    <div class="stat-label">Gzipped Size</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">18.6KB</div>
+                    <div class="stat-label">Minified Size</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Dependencies</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">72</div>
+                    <div class="stat-label">Tests Passing</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="examples-grid">
+            <div class="example-card">
+                <h3>🔧 Basic Examples</h3>
+                <p>Learn the fundamentals of MicroUI with simple DOM manipulation, event handling, and basic animations.</p>
+                <ul class="features">
+                    <li>DOM selection and manipulation</li>
+                    <li>Event handling and delegation</li>
+                    <li>CSS class management</li>
+                    <li>Basic animations (fade in/out)</li>
+                    <li>Form handling</li>
+                </ul>
+                <a href="basic.html" class="btn">View Examples</a>
+                <a href="https://github.com/lam0819/MicroUI/blob/master/examples/basic.html" class="btn btn-secondary">View Source</a>
+            </div>
+
+            <div class="example-card">
+                <h3>🚀 Advanced Examples</h3>
+                <p>Explore advanced features including components, advanced delegation, AJAX requests, and complex interactions.</p>
+                <ul class="features">
+                    <li>Component system with lifecycle</li>
+                    <li>Advanced event delegation</li>
+                    <li>AJAX requests and responses</li>
+                    <li>Dynamic content loading</li>
+                    <li>State management</li>
+                </ul>
+                <a href="advanced.html" class="btn">View Examples</a>
+                <a href="https://github.com/lam0819/MicroUI/blob/master/examples/advanced.html" class="btn btn-secondary">View Source</a>
+            </div>
+
+            <div class="example-card">
+                <h3>🧪 Test Playground</h3>
+                <p>Interactive testing environment where you can experiment with MicroUI features and see real-time results.</p>
+                <ul class="features">
+                    <li>Live code editor</li>
+                    <li>Real-time output</li>
+                    <li>All MicroUI features available</li>
+                    <li>Error handling examples</li>
+                    <li>Performance monitoring</li>
+                </ul>
+                <a href="test.html" class="btn">Open Playground</a>
+                <a href="https://github.com/lam0819/MicroUI/blob/master/examples/test.html" class="btn btn-secondary">View Source</a>
+            </div>
+        </div>
+
+        <div class="stats" style="margin-top: 3rem;">
+            <h2>Getting Started</h2>
+            <p style="margin-bottom: 1.5rem;">Ready to use MicroUI in your project? Here are the quickest ways to get started:</p>
+            
+            <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                <h3>📦 NPM Installation</h3>
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin: 1rem 0;">npm install microui</pre>
+                
+                <h3>🔗 CDN Usage</h3>
+                <pre style="background: #f8f9fa; padding: 1rem; border-radius: 6px; margin: 1rem 0;">&lt;script src="https://unpkg.com/microui@latest/dist/microui.min.js"&gt;&lt;/script&gt;</pre>
+                
+                <h3>📚 Documentation</h3>
+                <p><a href="../" class="btn">Read Full Documentation</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../dist/microui.min.js"></script>
+    <script>
+        // Add some interactive effects using MicroUI itself
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on hover using MicroUI
+            const cards = MicroUI.$$('.example-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    MicroUI.addClass(this, 'hovered');
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    MicroUI.removeClass(this, 'hovered');
+                });
+            });
+
+            // Add smooth scroll for back link
+            const backLink = MicroUI.$('.back-link');
+            if (backLink) {
+                backLink.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '../') {
+                        e.preventDefault();
+                        window.location.href = '../';
+                    }
+                });
+            }
+
+            console.log('📦 MicroUI Examples loaded successfully!');
+            console.log('🔧 MicroUI version:', MicroUI.version || '1.0.0');
+        });
+    </script>
+</body>
+</html>
