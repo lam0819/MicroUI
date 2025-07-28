@@ -6,15 +6,9 @@
 
 ### Pure Vanilla JavaScript Utility Library
 
-[![NPM Version](https://img.shields.io/npm/v/microui?style=for-the-badge&logo=npm&color=cb3837)](https://www.npmjs.com/package/microui)
-[![Bundle Size](https://img.shields.io/bundlephobia/minzip/microui?style=for-the-badge&logo=javascript&color=brightgreen)](https://bundlephobia.com/package/microui)
 [![License](https://img.shields.io/github/license/lam0819/MicroUI?style=for-the-badge&color=blue)](https://github.com/lam0819/MicroUI/blob/master/LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/lam0819/MicroUI?style=for-the-badge&logo=github&color=yellow)](https://github.com/lam0819/MicroUI/stargazers)
-
 [![Vanilla JS](https://img.shields.io/badge/Vanilla-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-success?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/microui)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![ES6+](https://img.shields.io/badge/ES6+-Compatible-purple?style=for-the-badge&logo=javascript)](https://www.ecma-international.org/ecma-262/)
 
 ---
 
