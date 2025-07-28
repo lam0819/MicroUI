@@ -5,7 +5,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # Build outputs
-dist/
+# dist/ - We track dist for GitHub Pages deployment
 
 # Coverage reports
 coverage/

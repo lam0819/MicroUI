@@ -83,55 +83,20 @@ jobs:
           
       - name: Create GitHub Release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}
-          release_name: MicroUI v${{ steps.get_version.outputs.VERSION }}
+          tag_name: ${{ github.ref_name }}
+          name: MicroUI v${{ steps.get_version.outputs.VERSION }}
           body: ${{ steps.release_notes.outputs.RELEASE_NOTES }}
           draft: false
           prerelease: false
-          
-      - name: Upload Development Build
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/microui.js
-          asset_name: microui.js
-          asset_content_type: application/javascript
-          
-      - name: Upload Production Build
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/microui.min.js
-          asset_name: microui.min.js
-          asset_content_type: application/javascript
-          
-      - name: Upload ES Modules Build
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/microui.esm.js
-          asset_name: microui.esm.js
-          asset_content_type: application/javascript
-          
-      - name: Upload ZIP Archive
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./microui-v${{ steps.get_version.outputs.VERSION }}.zip
-          asset_name: microui-v${{ steps.get_version.outputs.VERSION }}.zip
-          asset_content_type: application/zip
+          files: |
+            dist/microui.js
+            dist/microui.min.js
+            dist/microui.esm.js
+            microui-v${{ steps.get_version.outputs.VERSION }}.zip
+          fail_on_unmatched_files: false
+          generate_release_notes: true
           
       # Uncomment to publish to NPM automatically
       # - name: Publish to NPM

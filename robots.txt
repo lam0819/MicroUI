@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://your-username.github.io/microui/sitemap.xml
+Sitemap: https://lam0819.github.io/microui/sitemap.xml
 
 # Allow crawling of important files
 Allow: /llms.txt

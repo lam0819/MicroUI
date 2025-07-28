@@ -1,673 +1,683 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MicroUI - The Lightweight JavaScript Library</title>
-  <meta name="description" content="MicroUI is a pure vanilla JavaScript utility library that makes DOM manipulation and event handling simple and efficient. Only 18KB minified (5.1KB gzipped).">
-  
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: #ffffff;
-    }
-    
-    /* Header */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      padding: 1rem 0;
-      border-bottom: 1px solid #e5e7eb;
-    }
-    
-    .nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #3b82f6;
-      text-decoration: none;
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    
-    .nav-links a {
-      text-decoration: none;
-      color: #666;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    
-    .nav-links a:hover {
-      color: #3b82f6;
-    }
-    
-    /* Hero Section */
-    .hero {
-      padding: 8rem 2rem 4rem;
-      text-align: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      margin-top: 80px;
-    }
-    
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .hero p {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-    
-    .stat {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1rem 1.5rem;
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
-    }
-    
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 700;
-      display: block;
-    }
-    
-    .stat-label {
-      font-size: 0.875rem;
-      opacity: 0.8;
-    }
-    
-    .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-    
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    
-    .btn-primary {
-      background: #ffffff;
-      color: #3b82f6;
-    }
-    
-    .btn-primary:hover {
-      background: #f8fafc;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-    
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    
-    /* Sections */
-    .section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .section h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 3rem;
-      color: #1f2937;
-    }
-    
-    /* Features Grid */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-    
-    .feature {
-      padding: 2rem;
-      border-radius: 12px;
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      transition: all 0.3s;
-    }
-    
-    .feature:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    }
-    
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-    
-    .feature h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: #1f2937;
-    }
-    
-    .feature p {
-      color: #6b7280;
-    }
-    
-    /* Code Examples */
-    .example {
-      background: #1f2937;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 2rem 0;
-    }
-    
-    .example-header {
-      background: #374151;
-      padding: 1rem 1.5rem;
-      font-weight: 600;
-      color: white;
-      font-size: 0.875rem;
-    }
-    
-    .example-code {
-      padding: 1.5rem;
-      overflow-x: auto;
-    }
-    
-    .example-code pre {
-      color: #e5e7eb;
-      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-      font-size: 0.875rem;
-      line-height: 1.6;
-    }
-    
-    .keyword { color: #c792ea; }
-    .string { color: #a5d6a7; }
-    .function { color: #82b1ff; }
-    .comment { color: #616161; }
-    
-    /* Interactive Demo */
-    .demo {
-      background: #f8fafc;
-      border-radius: 12px;
-      padding: 2rem;
-      margin: 2rem 0;
-      border: 1px solid #e5e7eb;
-    }
-    
-    .demo-controls {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-    
-    .demo-btn {
-      background: #3b82f6;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-    
-    .demo-btn:hover {
-      background: #2563eb;
-      transform: translateY(-1px);
-    }
-    
-    .demo-result {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      padding: 1.5rem;
-      min-height: 100px;
-      font-family: monospace;
-    }
-    
-    /* Comparison Table */
-    .comparison {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      margin: 2rem 0;
-    }
-    
-    .comparison table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    .comparison th,
-    .comparison td {
-      padding: 1rem;
-      text-align: left;
-      border-bottom: 1px solid #e5e7eb;
-    }
-    
-    .comparison th {
-      background: #f8fafc;
-      font-weight: 600;
-      color: #374151;
-    }
-    
-    .comparison td:first-child {
-      font-weight: 500;
-    }
-    
-    .highlight {
-      background: #dbeafe;
-      color: #1e40af;
-      font-weight: 600;
-    }
-    
-    /* Footer */
-    .footer {
-      background: #1f2937;
-      color: white;
-      padding: 3rem 2rem 2rem;
-      text-align: center;
-    }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-    
-    .footer-links a {
-      color: #9ca3af;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    
-    .footer-links a:hover {
-      color: white;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      
-      .hero-stats {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .nav-links {
-        display: none;
-      }
-      
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .demo-controls {
-        flex-direction: column;
-      }
-    }
-    
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .animate-on-scroll {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease forwards;
-    }
-    
-    /* Performance Section */
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-    
-    .comparison-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e5e7eb;
-    }
-    
-    .comparison-card h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      color: #1f2937;
-    }
-    
-    .size-comparison {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    
-    .size-bar {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      position: relative;
-    }
-    
-    .size-bar .library {
-      min-width: 80px;
-      font-weight: 500;
-      color: #374151;
-    }
-    
-    .size-bar .size {
-      min-width: 50px;
-      font-weight: 600;
-      color: #1f2937;
-    }
-    
-    .size-bar .bar {
-      height: 20px;
-      border-radius: 4px;
-      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
-      transition: width 0.6s ease;
-    }
-    
-    .size-bar.microui .bar {
-      background: linear-gradient(90deg, #10b981, #059669);
-    }
-    
-    .metrics {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .metric {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem;
-      background: #f9fafb;
-      border-radius: 6px;
-    }
-    
-    .metric-label {
-      color: #6b7280;
-      font-weight: 500;
-    }
-    
-    .metric-value {
-      color: #059669;
-      font-weight: 600;
-      font-family: 'SF Mono', Monaco, monospace;
-    }
-    
-    .benefits {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .benefits li {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #374151;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroUI - The Lightweight JavaScript Library</title>
+    <meta name="description" content="MicroUI is a pure vanilla JavaScript utility library that makes DOM manipulation and event handling simple and efficient. Only 18KB minified (5.1KB gzipped).">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+        /* Header */
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+        /* Hero Section */
+        
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: #ffffff;
+            color: #3b82f6;
+        }
+        
+        .btn-primary:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        /* Sections */
+        
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+        /* Features Grid */
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature {
+            padding: 2rem;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .feature h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        
+        .feature p {
+            color: #6b7280;
+        }
+        /* Code Examples */
+        
+        .example {
+            background: #1f2937;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+        
+        .example-header {
+            background: #374151;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: white;
+            font-size: 0.875rem;
+        }
+        
+        .example-code {
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+        
+        .example-code pre {
+            color: #e5e7eb;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        
+        .keyword {
+            color: #c792ea;
+        }
+        
+        .string {
+            color: #a5d6a7;
+        }
+        
+        .function {
+            color: #82b1ff;
+        }
+        
+        .comment {
+            color: #616161;
+        }
+        /* Interactive Demo */
+        
+        .demo {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .demo-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .demo-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .demo-btn:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+        
+        .demo-result {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-height: 100px;
+            font-family: monospace;
+        }
+        /* Comparison Table */
+        
+        .comparison {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin: 2rem 0;
+        }
+        
+        .comparison table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison th,
+        .comparison td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .comparison th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .comparison td:first-child {
+            font-weight: 500;
+        }
+        
+        .highlight {
+            background: #dbeafe;
+            color: #1e40af;
+            font-weight: 600;
+        }
+        /* Footer */
+        
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-links {
+                display: none;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .demo-controls {
+                flex-direction: column;
+            }
+        }
+        /* Smooth scrolling */
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Animations */
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        /* Performance Section */
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .comparison-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+        
+        .size-comparison {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .size-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+        }
+        
+        .size-bar .library {
+            min-width: 80px;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .size-bar .size {
+            min-width: 50px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .size-bar .bar {
+            height: 20px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            transition: width 0.6s ease;
+        }
+        
+        .size-bar.microui .bar {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+        
+        .metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 6px;
+        }
+        
+        .metric-label {
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .metric-value {
+            color: #059669;
+            font-weight: 600;
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+        
+        .benefits {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .benefits li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #374151;
+        }
+    </style>
 </head>
+
 <body>
-  <!-- Header -->
-  <header class="header">
-    <nav class="nav">
-      <a href="#" class="logo">🚀 MicroUI</a>
-      <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#performance">Performance</a></li>
-        <li><a href="#examples">Examples</a></li>
-        <li><a href="#docs">Docs</a></li>
-        <li><a href="https://github.com/your-username/microui">GitHub</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">🚀 MicroUI</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#performance">Performance</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#docs">Docs</a></li>
+                <li><a href="https://github.com/lam0819/microui">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>The Pure Vanilla JavaScript Library</h1>
-    <p>MicroUI makes DOM manipulation and event handling simple and efficient. Modern ES6+ features in just 18KB minified (5.1KB gzipped).</p>
-    
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-number">5.1KB</span>
-        <span class="stat-label">Gzipped</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">6x</span>
-        <span class="stat-label">Smaller than jQuery</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">100%</span>
-        <span class="stat-label">Vanilla JavaScript</span>
-      </div>
-    </div>
-    
-    <div class="cta-buttons">
-      <a href="#getting-started" class="btn btn-primary">Get Started</a>
-      <a href="https://github.com/your-username/microui" class="btn btn-secondary">View on GitHub</a>
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>The Pure Vanilla JavaScript Library</h1>
+        <p>MicroUI makes DOM manipulation and event handling simple and efficient. Modern ES6+ features in just 18KB minified (5.1KB gzipped).</p>
 
-  <!-- Features Section -->
-  <section class="section" id="features">
-    <h2>Why Choose MicroUI?</h2>
-    
-    <div class="features">
-      <div class="feature">
-        <span class="feature-icon">⚡</span>
-        <h3>Ultra Lightweight</h3>
-        <p>Only 18KB minified (5.1KB gzipped) - 6x smaller than jQuery while providing comprehensive functionality.</p>
-      </div>
-      
-        <div class="feature">
-          <span class="feature-icon">📦</span>
-          <h3>Pure Vanilla JS</h3>
-          <p>Zero dependencies, no frameworks. Built with native JavaScript APIs for maximum compatibility and performance.</p>
-        </div>      <div class="feature">
-        <span class="feature-icon">🎯</span>
-        <h3>Modern JavaScript</h3>
-        <p>Built with ES6+ features like Promises, async/await, and Web Animations API.</p>
-      </div>
-      
-      <div class="feature">
-        <span class="feature-icon">🔧</span>
-        <h3>Easy to Use</h3>
-        <p>Familiar jQuery-like syntax with modern improvements and better error handling.</p>
-      </div>
-      
-      <div class="feature">
-        <span class="feature-icon">📱</span>
-        <h3>Mobile First</h3>
-        <p>Optimized for mobile devices with touch-friendly event handling and responsive design.</p>
-      </div>
-      
-      <div class="feature">
-        <span class="feature-icon">🧪</span>
-        <h3>Well Tested</h3>
-        <p>Comprehensive test suite with 72+ tests ensuring reliability and stability across all features.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Performance Section -->
-  <section class="section" id="performance">
-    <h2>📈 Performance Comparison</h2>
-    
-    <div class="comparison-grid">
-      <div class="comparison-card">
-        <h3>Bundle Sizes (Gzipped)</h3>
-        <div class="size-comparison">
-          <div class="size-bar microui">
-            <span class="library">MicroUI</span>
-            <span class="size">5.1KB</span>
-            <div class="bar" style="width: 17%;"></div>
-          </div>
-          <div class="size-bar react">
-            <span class="library">React 18</span>
-            <span class="size">13KB</span>
-            <div class="bar" style="width: 43%;"></div>
-          </div>
-          <div class="size-bar alpine">
-            <span class="library">Alpine.js</span>
-            <span class="size">15KB</span>
-            <div class="bar" style="width: 50%;"></div>
-          </div>
-          <div class="size-bar vue">
-            <span class="library">Vue 3</span>
-            <span class="size">16KB</span>
-            <div class="bar" style="width: 53%;"></div>
-          </div>
-          <div class="size-bar jquery">
-            <span class="library">jQuery</span>
-            <span class="size">30KB</span>
-            <div class="bar" style="width: 100%;"></div>
-          </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-number">5.1KB</span>
+                <span class="stat-label">Gzipped</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">6x</span>
+                <span class="stat-label">Smaller than jQuery</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Vanilla JavaScript</span>
+            </div>
         </div>
-      </div>
-      
-      <div class="comparison-card">
-        <h3>Performance Benefits</h3>
-        <div class="metrics">
-          <div class="metric">
-            <span class="metric-label">Bundle Size</span>
-            <span class="metric-value">5.1KB</span>
-          </div>
-          <div class="metric">
-            <span class="metric-label">Dependencies</span>
-            <span class="metric-value">Zero</span>
-          </div>
-          <div class="metric">
-            <span class="metric-label">Framework Overhead</span>
-            <span class="metric-value">None</span>
-          </div>
-          <div class="metric">
-            <span class="metric-label">Build Required</span>
-            <span class="metric-value">Optional</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="comparison-card">
-        <h3>Why It Matters</h3>
-        <ul class="benefits">
-          <li>🚀 <strong>Faster loading</strong> = better user experience</li>
-          <li>📱 <strong>Mobile friendly</strong> = works on slower devices</li>
-          <li>💰 <strong>Lower costs</strong> = less bandwidth usage</li>
-          <li>🔍 <strong>SEO boost</strong> = Google loves fast sites</li>
-        </ul>
-      </div>
-    </div>
-  </section>
 
-  <!-- Getting Started Section -->
-  <section class="section" id="getting-started">
-    <h2>Getting Started</h2>
-    
-    <div class="example">
-      <div class="example-header">Installation</div>
-      <div class="example-code">
-        <pre><code><span class="comment">// Via CDN</span>
+        <div class="cta-buttons">
+            <a href="#getting-started" class="btn btn-primary">Get Started</a>
+            <a href="https://github.com/lam0819/microui" class="btn btn-secondary">View on GitHub</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <h2>Why Choose MicroUI?</h2>
+
+        <div class="features">
+            <div class="feature">
+                <span class="feature-icon">⚡</span>
+                <h3>Ultra Lightweight</h3>
+                <p>Only 18KB minified (5.1KB gzipped) - 6x smaller than jQuery while providing comprehensive functionality.</p>
+            </div>
+
+            <div class="feature">
+                <span class="feature-icon">📦</span>
+                <h3>Pure Vanilla JS</h3>
+                <p>Zero dependencies, no frameworks. Built with native JavaScript APIs for maximum compatibility and performance.</p>
+            </div>
+            <div class="feature">
+                <span class="feature-icon">🎯</span>
+                <h3>Modern JavaScript</h3>
+                <p>Built with ES6+ features like Promises, async/await, and Web Animations API.</p>
+            </div>
+
+            <div class="feature">
+                <span class="feature-icon">🔧</span>
+                <h3>Easy to Use</h3>
+                <p>Familiar jQuery-like syntax with modern improvements and better error handling.</p>
+            </div>
+
+            <div class="feature">
+                <span class="feature-icon">📱</span>
+                <h3>Mobile First</h3>
+                <p>Optimized for mobile devices with touch-friendly event handling and responsive design.</p>
+            </div>
+
+            <div class="feature">
+                <span class="feature-icon">🧪</span>
+                <h3>Well Tested</h3>
+                <p>Comprehensive test suite with 72+ tests ensuring reliability and stability across all features.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section class="section" id="performance">
+        <h2>📈 Performance Comparison</h2>
+
+        <div class="comparison-grid">
+            <div class="comparison-card">
+                <h3>Bundle Sizes (Gzipped)</h3>
+                <div class="size-comparison">
+                    <div class="size-bar microui">
+                        <span class="library">MicroUI</span>
+                        <span class="size">5.1KB</span>
+                        <div class="bar" style="width: 17%;"></div>
+                    </div>
+                    <div class="size-bar react">
+                        <span class="library">React 18</span>
+                        <span class="size">13KB</span>
+                        <div class="bar" style="width: 43%;"></div>
+                    </div>
+                    <div class="size-bar alpine">
+                        <span class="library">Alpine.js</span>
+                        <span class="size">15KB</span>
+                        <div class="bar" style="width: 50%;"></div>
+                    </div>
+                    <div class="size-bar vue">
+                        <span class="library">Vue 3</span>
+                        <span class="size">16KB</span>
+                        <div class="bar" style="width: 53%;"></div>
+                    </div>
+                    <div class="size-bar jquery">
+                        <span class="library">jQuery</span>
+                        <span class="size">30KB</span>
+                        <div class="bar" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <h3>Performance Benefits</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-label">Bundle Size</span>
+                        <span class="metric-value">5.1KB</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Dependencies</span>
+                        <span class="metric-value">Zero</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Framework Overhead</span>
+                        <span class="metric-value">None</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Build Required</span>
+                        <span class="metric-value">Optional</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-card">
+                <h3>Why It Matters</h3>
+                <ul class="benefits">
+                    <li>🚀 <strong>Faster loading</strong> = better user experience</li>
+                    <li>📱 <strong>Mobile friendly</strong> = works on slower devices</li>
+                    <li>💰 <strong>Lower costs</strong> = less bandwidth usage</li>
+                    <li>🔍 <strong>SEO boost</strong> = Google loves fast sites</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section class="section" id="getting-started">
+        <h2>Getting Started</h2>
+
+        <div class="example">
+            <div class="example-header">Installation</div>
+            <div class="example-code">
+                <pre><code><span class="comment">// Via CDN</span>
 <span class="keyword">&lt;script</span> <span class="string">src="https://unpkg.com/microui@latest/dist/microui.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
 
 <span class="comment">// Via NPM</span>
@@ -675,13 +685,13 @@
 
 <span class="comment">// ES6 Import</span>
 <span class="keyword">import</span> MicroUI <span class="keyword">from</span> <span class="string">'microui'</span>;</code></pre>
-      </div>
-    </div>
-    
-    <div class="example">
-      <div class="example-header">Basic Usage</div>
-      <div class="example-code">
-        <pre><code><span class="comment">// DOM Selection</span>
+            </div>
+        </div>
+
+        <div class="example">
+            <div class="example-header">Basic Usage</div>
+            <div class="example-code">
+                <pre><code><span class="comment">// DOM Selection</span>
 <span class="keyword">const</span> element = MicroUI.<span class="function">$</span>(<span class="string">'#my-element'</span>);
 <span class="keyword">const</span> elements = MicroUI.<span class="function">$$</span>(<span class="string">'.my-class'</span>);
 
@@ -694,118 +704,118 @@ MicroUI.<span class="function">on</span>(<span class="string">'click'</span>, <s
 MicroUI.<span class="function">ajax</span>(<span class="string">'/api/data'</span>)
   .<span class="function">then</span>(data => <span class="function">console.log</span>(data))
   .<span class="function">catch</span>(error => <span class="function">console.error</span>(error));</code></pre>
-      </div>
-    </div>
-  </section>
-
-  <!-- Examples Section -->
-  <section class="section" id="examples">
-    <h2>Interactive Examples</h2>
-    
-    <div class="demo">
-      <h3>DOM Manipulation Demo</h3>
-      <div class="demo-controls">
-        <button class="demo-btn" id="add-class">Add Class</button>
-        <button class="demo-btn" id="remove-class">Remove Class</button>
-        <button class="demo-btn" id="toggle-class">Toggle Class</button>
-        <button class="demo-btn" id="change-text">Change Text</button>
-        <button class="demo-btn" id="animate">Animate</button>
-      </div>
-      <div class="demo-result" id="demo-target">
-        <div style="padding: 20px; background: #e5e7eb; border-radius: 8px; transition: all 0.3s;">
-          This is a demo element. Try the buttons above!
+            </div>
         </div>
-      </div>
-    </div>
-    
-    <div class="demo">
-      <h3>AJAX Demo</h3>
-      <div class="demo-controls">
-        <button class="demo-btn" id="fetch-data">Fetch Random Quote</button>
-        <button class="demo-btn" id="fetch-users">Fetch User Data</button>
-      </div>
-      <div class="demo-result" id="ajax-result">
-        Click a button to fetch data...
-      </div>
-    </div>
-    
-    <div class="demo">
-      <h3>Event Handling Demo</h3>
-      <div class="demo-controls">
-        <button class="demo-btn event-demo" data-action="clicked">Click Me</button>
-        <button class="demo-btn event-demo" data-action="double-clicked">Double Click Me</button>
-        <input type="text" placeholder="Type something..." id="input-demo" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-      </div>
-      <div class="demo-result" id="event-result">
-        Events will be logged here...
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Comparison Section -->
-  <section class="section">
-    <h2>How MicroUI Compares</h2>
-    
-    <div class="comparison">
-      <table>
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>MicroUI</th>
-            <th>jQuery</th>
-            <th>Vanilla JS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Bundle Size</td>
-            <td class="highlight">18KB</td>
-            <td>87KB</td>
-            <td>0KB</td>
-          </tr>
-          <tr>
-            <td>Modern Syntax</td>
-            <td class="highlight">✅ ES6+</td>
-            <td>❌ ES5</td>
-            <td>✅ Native</td>
-          </tr>
-          <tr>
-            <td>Promise Support</td>
-            <td class="highlight">✅ Native</td>
-            <td>❌ Custom</td>
-            <td>✅ Native</td>
-          </tr>
-          <tr>
-            <td>Animation API</td>
-            <td class="highlight">✅ Web Animations</td>
-            <td>❌ CSS Only</td>
-            <td>✅ Native</td>
-          </tr>
-          <tr>
-            <td>Learning Curve</td>
-            <td class="highlight">Easy</td>
-            <td>Easy</td>
-            <td>Steep</td>
-          </tr>
-          <tr>
-            <td>Browser Support</td>
-            <td>Modern</td>
-            <td>IE6+</td>
-            <td>Modern</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <!-- Examples Section -->
+    <section class="section" id="examples">
+        <h2>Interactive Examples</h2>
 
-  <!-- Documentation Section -->
-  <section class="section" id="docs">
-    <h2>API Documentation</h2>
-    
-    <div class="example">
-      <div class="example-header">DOM Selection & Manipulation</div>
-      <div class="example-code">
-        <pre><code><span class="comment">// Selection</span>
+        <div class="demo">
+            <h3>DOM Manipulation Demo</h3>
+            <div class="demo-controls">
+                <button class="demo-btn" id="add-class">Add Class</button>
+                <button class="demo-btn" id="remove-class">Remove Class</button>
+                <button class="demo-btn" id="toggle-class">Toggle Class</button>
+                <button class="demo-btn" id="change-text">Change Text</button>
+                <button class="demo-btn" id="animate">Animate</button>
+            </div>
+            <div class="demo-result" id="demo-target">
+                <div style="padding: 20px; background: #e5e7eb; border-radius: 8px; transition: all 0.3s;">
+                    This is a demo element. Try the buttons above!
+                </div>
+            </div>
+        </div>
+
+        <div class="demo">
+            <h3>AJAX Demo</h3>
+            <div class="demo-controls">
+                <button class="demo-btn" id="fetch-data">Fetch Random Quote</button>
+                <button class="demo-btn" id="fetch-users">Fetch User Data</button>
+            </div>
+            <div class="demo-result" id="ajax-result">
+                Click a button to fetch data...
+            </div>
+        </div>
+
+        <div class="demo">
+            <h3>Event Handling Demo</h3>
+            <div class="demo-controls">
+                <button class="demo-btn event-demo" data-action="clicked">Click Me</button>
+                <button class="demo-btn event-demo" data-action="double-clicked">Double Click Me</button>
+                <input type="text" placeholder="Type something..." id="input-demo" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div class="demo-result" id="event-result">
+                Events will be logged here...
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="section">
+        <h2>How MicroUI Compares</h2>
+
+        <div class="comparison">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>MicroUI</th>
+                        <th>jQuery</th>
+                        <th>Vanilla JS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bundle Size</td>
+                        <td class="highlight">18KB</td>
+                        <td>87KB</td>
+                        <td>0KB</td>
+                    </tr>
+                    <tr>
+                        <td>Modern Syntax</td>
+                        <td class="highlight">✅ ES6+</td>
+                        <td>❌ ES5</td>
+                        <td>✅ Native</td>
+                    </tr>
+                    <tr>
+                        <td>Promise Support</td>
+                        <td class="highlight">✅ Native</td>
+                        <td>❌ Custom</td>
+                        <td>✅ Native</td>
+                    </tr>
+                    <tr>
+                        <td>Animation API</td>
+                        <td class="highlight">✅ Web Animations</td>
+                        <td>❌ CSS Only</td>
+                        <td>✅ Native</td>
+                    </tr>
+                    <tr>
+                        <td>Learning Curve</td>
+                        <td class="highlight">Easy</td>
+                        <td>Easy</td>
+                        <td>Steep</td>
+                    </tr>
+                    <tr>
+                        <td>Browser Support</td>
+                        <td>Modern</td>
+                        <td>IE6+</td>
+                        <td>Modern</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="section" id="docs">
+        <h2>API Documentation</h2>
+
+        <div class="example">
+            <div class="example-header">DOM Selection & Manipulation</div>
+            <div class="example-code">
+                <pre><code><span class="comment">// Selection</span>
 MicroUI.<span class="function">$</span>(<span class="string">'selector'</span>)        <span class="comment">// Single element</span>
 MicroUI.<span class="function">$$</span>(<span class="string">'selector'</span>)       <span class="comment">// Multiple elements</span>
 
@@ -819,13 +829,13 @@ MicroUI.<span class="function">hasClass</span>(el, <span class="string">'class'<
 MicroUI.<span class="function">html</span>(el, <span class="string">'content'</span>)
 MicroUI.<span class="function">text</span>(el, <span class="string">'content'</span>)
 MicroUI.<span class="function">append</span>(el, <span class="string">'content'</span>)</code></pre>
-      </div>
-    </div>
-    
-    <div class="example">
-      <div class="example-header">Events</div>
-      <div class="example-code">
-        <pre><code><span class="comment">// Event Delegation</span>
+            </div>
+        </div>
+
+        <div class="example">
+            <div class="example-header">Events</div>
+            <div class="example-code">
+                <pre><code><span class="comment">// Event Delegation</span>
 MicroUI.<span class="function">on</span>(<span class="string">'event'</span>, <span class="string">'selector'</span>, handler)
 MicroUI.<span class="function">off</span>(<span class="string">'event'</span>, <span class="string">'selector'</span>, handler)
 MicroUI.<span class="function">once</span>(<span class="string">'event'</span>, <span class="string">'selector'</span>, handler)
@@ -835,13 +845,13 @@ MicroUI.<span class="function">trigger</span>(el, <span class="string">'customEv
 
 <span class="comment">// DOM Ready</span>
 MicroUI.<span class="function">ready</span>(callback)</code></pre>
-      </div>
-    </div>
-    
-    <div class="example">
-      <div class="example-header">AJAX & Animations</div>
-      <div class="example-code">
-        <pre><code><span class="comment">// AJAX</span>
+            </div>
+        </div>
+
+        <div class="example">
+            <div class="example-header">AJAX & Animations</div>
+            <div class="example-code">
+                <pre><code><span class="comment">// AJAX</span>
 MicroUI.<span class="function">ajax</span>(url, options)
 MicroUI.<span class="function">get</span>(url, data)
 MicroUI.<span class="function">post</span>(url, data)
@@ -852,174 +862,190 @@ MicroUI.<span class="function">fadeOut</span>(el, duration)
 MicroUI.<span class="function">slideUp</span>(el, duration)
 MicroUI.<span class="function">slideDown</span>(el, duration)
 MicroUI.<span class="function">animate</span>(el, keyframes, options)</code></pre>
-      </div>
-    </div>
-  </section>
+            </div>
+        </div>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="https://github.com/your-username/microui">GitHub</a>
-        <a href="https://github.com/your-username/microui/issues">Issues</a>
-        <a href="#docs">Documentation</a>
-        <a href="examples/basic.html">Examples</a>
-        <a href="examples/advanced.html">Advanced Examples</a>
-        <a href="llms.txt">LLMs.txt</a>
-      </div>
-      <p>&copy; 2024 MicroUI. MIT License. Built with ❤️ for the modern web.</p>
-    </div>
-  </footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/lam0819/microui">GitHub</a>
+                <a href="https://github.com/lam0819/microui/issues">Issues</a>
+                <a href="#docs">Documentation</a>
+                <a href="examples/basic.html">Examples</a>
+                <a href="examples/advanced.html">Advanced Examples</a>
+                <a href="llms.txt">LLMs.txt</a>
+            </div>
+            <p>&copy; 2024 MicroUI. MIT License. Built with ❤️ for the modern web.</p>
+        </div>
+    </footer>
 
-  <!-- Load MicroUI -->
-  <script src="dist/microui.js"></script>
-  
-  <script>
-    MicroUI.ready(() => {
-      console.log('MicroUI demo site loaded!');
-      
-      // Demo functionality
-      let demoCounter = 0;
-      
-      // DOM Manipulation Demo
-      MicroUI.on('click', '#add-class', function() {
-        const target = MicroUI.$('#demo-target div');
-        MicroUI.addClass(target, 'highlight');
-        target.style.background = '#dbeafe';
-        target.style.color = '#1e40af';
-      });
-      
-      MicroUI.on('click', '#remove-class', function() {
-        const target = MicroUI.$('#demo-target div');
-        MicroUI.removeClass(target, 'highlight');
-        target.style.background = '#e5e7eb';
-        target.style.color = '#333';
-      });
-      
-      MicroUI.on('click', '#toggle-class', function() {
-        const target = MicroUI.$('#demo-target div');
-        MicroUI.toggleClass(target, 'highlight');
-        if (MicroUI.hasClass(target, 'highlight')) {
-          target.style.background = '#fef3c7';
-          target.style.color = '#92400e';
-        } else {
-          target.style.background = '#e5e7eb';
-          target.style.color = '#333';
-        }
-      });
-      
-      MicroUI.on('click', '#change-text', function() {
-        const target = MicroUI.$('#demo-target div');
-        demoCounter++;
-        MicroUI.text(target, `Text changed ${demoCounter} time${demoCounter > 1 ? 's' : ''}!`);
-      });
-      
-      MicroUI.on('click', '#animate', function() {
-        const target = MicroUI.$('#demo-target div');
-        MicroUI.animate(target, [
-          { transform: 'scale(1) rotate(0deg)', background: '#e5e7eb' },
-          { transform: 'scale(1.1) rotate(5deg)', background: '#3b82f6' },
-          { transform: 'scale(1) rotate(0deg)', background: '#e5e7eb' }
-        ], {
-          duration: 800,
-          easing: 'ease-in-out'
-        });
-      });
-      
-      // AJAX Demo
-      MicroUI.on('click', '#fetch-data', function() {
-        const result = MicroUI.$('#ajax-result');
-        MicroUI.html(result, 'Loading...');
-        
-        // Simulate API call with random quote
-        setTimeout(() => {
-          const quotes = [
-            "The only way to do great work is to love what you do. - Steve Jobs",
-            "Life is what happens to you while you're busy making other plans. - John Lennon",
-            "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
-            "It is during our darkest moments that we must focus to see the light. - Aristotle",
-            "The way to get started is to quit talking and begin doing. - Walt Disney"
-          ];
-          const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-          MicroUI.html(result, `<div style="font-style: italic; color: #666;">"${randomQuote}"</div>`);
-        }, 1000);
-      });
-      
-      MicroUI.on('click', '#fetch-users', function() {
-        const result = MicroUI.$('#ajax-result');
-        MicroUI.html(result, 'Loading user data...');
-        
-        // Simulate API call with user data
-        setTimeout(() => {
-          const users = [
-            { name: 'John Doe', email: 'john@example.com', role: 'Developer' },
-            { name: 'Jane Smith', email: 'jane@example.com', role: 'Designer' },
-            { name: 'Bob Johnson', email: 'bob@example.com', role: 'Manager' }
-          ];
-          const randomUser = users[Math.floor(Math.random() * users.length)];
-          MicroUI.html(result, `
+    <!-- Load MicroUI -->
+    <script src="dist/microui.js"></script>
+
+    <script>
+        MicroUI.ready(() => {
+            console.log('MicroUI demo site loaded!');
+
+            // Demo functionality
+            let demoCounter = 0;
+
+            // DOM Manipulation Demo
+            MicroUI.on('click', '#add-class', function() {
+                const target = MicroUI.$('#demo-target div');
+                MicroUI.addClass(target, 'highlight');
+                target.style.background = '#dbeafe';
+                target.style.color = '#1e40af';
+            });
+
+            MicroUI.on('click', '#remove-class', function() {
+                const target = MicroUI.$('#demo-target div');
+                MicroUI.removeClass(target, 'highlight');
+                target.style.background = '#e5e7eb';
+                target.style.color = '#333';
+            });
+
+            MicroUI.on('click', '#toggle-class', function() {
+                const target = MicroUI.$('#demo-target div');
+                MicroUI.toggleClass(target, 'highlight');
+                if (MicroUI.hasClass(target, 'highlight')) {
+                    target.style.background = '#fef3c7';
+                    target.style.color = '#92400e';
+                } else {
+                    target.style.background = '#e5e7eb';
+                    target.style.color = '#333';
+                }
+            });
+
+            MicroUI.on('click', '#change-text', function() {
+                const target = MicroUI.$('#demo-target div');
+                demoCounter++;
+                MicroUI.text(target, `Text changed ${demoCounter} time${demoCounter > 1 ? 's' : ''}!`);
+            });
+
+            MicroUI.on('click', '#animate', function() {
+                const target = MicroUI.$('#demo-target div');
+                MicroUI.animate(target, [{
+                    transform: 'scale(1) rotate(0deg)',
+                    background: '#e5e7eb'
+                }, {
+                    transform: 'scale(1.1) rotate(5deg)',
+                    background: '#3b82f6'
+                }, {
+                    transform: 'scale(1) rotate(0deg)',
+                    background: '#e5e7eb'
+                }], {
+                    duration: 800,
+                    easing: 'ease-in-out'
+                });
+            });
+
+            // AJAX Demo
+            MicroUI.on('click', '#fetch-data', function() {
+                const result = MicroUI.$('#ajax-result');
+                MicroUI.html(result, 'Loading...');
+
+                // Simulate API call with random quote
+                setTimeout(() => {
+                    const quotes = [
+                        "The only way to do great work is to love what you do. - Steve Jobs",
+                        "Life is what happens to you while you're busy making other plans. - John Lennon",
+                        "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+                        "It is during our darkest moments that we must focus to see the light. - Aristotle",
+                        "The way to get started is to quit talking and begin doing. - Walt Disney"
+                    ];
+                    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                    MicroUI.html(result, `<div style="font-style: italic; color: #666;">"${randomQuote}"</div>`);
+                }, 1000);
+            });
+
+            MicroUI.on('click', '#fetch-users', function() {
+                const result = MicroUI.$('#ajax-result');
+                MicroUI.html(result, 'Loading user data...');
+
+                // Simulate API call with user data
+                setTimeout(() => {
+                    const users = [{
+                        name: 'John Doe',
+                        email: 'john@example.com',
+                        role: 'Developer'
+                    }, {
+                        name: 'Jane Smith',
+                        email: 'jane@example.com',
+                        role: 'Designer'
+                    }, {
+                        name: 'Bob Johnson',
+                        email: 'bob@example.com',
+                        role: 'Manager'
+                    }];
+                    const randomUser = users[Math.floor(Math.random() * users.length)];
+                    MicroUI.html(result, `
             <div>
               <strong>${randomUser.name}</strong><br>
               Email: ${randomUser.email}<br>
               Role: ${randomUser.role}
             </div>
           `);
-        }, 800);
-      });
-      
-      // Event Handling Demo
-      MicroUI.on('click', '.event-demo', function() {
-        const action = this.dataset.action;
-        const result = MicroUI.$('#event-result');
-        const timestamp = new Date().toLocaleTimeString();
-        MicroUI.html(result, `Button ${action} at ${timestamp}`);
-      });
-      
-      MicroUI.on('dblclick', '.event-demo', function() {
-        if (this.dataset.action === 'double-clicked') {
-          const result = MicroUI.$('#event-result');
-          const timestamp = new Date().toLocaleTimeString();
-          MicroUI.html(result, `Double-clicked at ${timestamp}! 🎉`);
-        }
-      });
-      
-      MicroUI.on('input', '#input-demo', function() {
-        const result = MicroUI.$('#event-result');
-        const value = this.value;
-        MicroUI.html(result, `Typing: "${value}"`);
-      });
-      
-      // Smooth scrolling for anchor links
-      MicroUI.on('click', 'a[href^="#"]', function(e) {
-        e.preventDefault();
-        const target = this.getAttribute('href');
-        if (target && target !== '#') {
-          const element = MicroUI.$(target);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      });
-      
-      // Animate elements on scroll
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            MicroUI.addClass(entry.target, 'animate-on-scroll');
-          }
+                }, 800);
+            });
+
+            // Event Handling Demo
+            MicroUI.on('click', '.event-demo', function() {
+                const action = this.dataset.action;
+                const result = MicroUI.$('#event-result');
+                const timestamp = new Date().toLocaleTimeString();
+                MicroUI.html(result, `Button ${action} at ${timestamp}`);
+            });
+
+            MicroUI.on('dblclick', '.event-demo', function() {
+                if (this.dataset.action === 'double-clicked') {
+                    const result = MicroUI.$('#event-result');
+                    const timestamp = new Date().toLocaleTimeString();
+                    MicroUI.html(result, `Double-clicked at ${timestamp}! 🎉`);
+                }
+            });
+
+            MicroUI.on('input', '#input-demo', function() {
+                const result = MicroUI.$('#event-result');
+                const value = this.value;
+                MicroUI.html(result, `Typing: "${value}"`);
+            });
+
+            // Smooth scrolling for anchor links
+            MicroUI.on('click', 'a[href^="#"]', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                if (target && target !== '#') {
+                    const element = MicroUI.$(target);
+                    if (element) {
+                        element.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        MicroUI.addClass(entry.target, 'animate-on-scroll');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe feature cards
+            MicroUI.$$('.feature').forEach(feature => {
+                observer.observe(feature);
+            });
         });
-      }, observerOptions);
-      
-      // Observe feature cards
-      MicroUI.$$('.feature').forEach(feature => {
-        observer.observe(feature);
-      });
-    });
-  </script>
+    </script>
 </body>
+
 </html>
