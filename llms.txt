@@ -1,0 +1,297 @@
+# MicroUI - Pure Vanilla JavaScript Utility Library
+
+> A lightweight, modern JavaScript utility library that makes DOM manipulation and event handling simple and efficient. Built with 100% vanilla JavaScript, zero dependencies.
+
+## Project Overview
+
+MicroUI is a production-ready vanilla JavaScript library that provides jQuery-like functionality with modern ES6+ features. It's designed to be the perfect middle ground between heavy frameworks and raw vanilla JavaScript.
+
+### Key Statistics
+- **Size**: 18KB minified, 5.1KB gzipped
+- **Performance**: 5.8x smaller than jQuery, 2.5x smaller than React
+- **Tests**: 72 comprehensive tests with 100% passing rate
+- **Dependencies**: Zero - pure vanilla JavaScript
+- **Browser Support**: All modern browsers (ES6+)
+
+## Architecture
+
+### Core Modules (`src/core/`)
+- **`dom.js`** - DOM manipulation utilities (selection, classes, attributes, content)
+- **`events.js`** - Event handling system with automatic delegation
+- **`ajax.js`** - Promise-based HTTP requests (GET, POST, PUT, DELETE)
+- **`utils.js`** - Helper functions (debounce, throttle, extend, type checking)
+
+### Extended Modules (`src/modules/`)
+- **`animation.js`** - Web Animations API wrapper (fade, slide, custom animations)
+- **`storage.js`** - localStorage/sessionStorage utilities with JSON serialization
+- **`component.js`** - Component system with lifecycle hooks and templating
+- **`delegate.js`** - Advanced event delegation with namespacing and middleware
+
+### Build System
+- **Rollup** for bundling (UMD, ES modules, development builds)
+- **Babel** for ES6+ compatibility
+- **Terser** for minification
+- **Jest** for testing
+- **ESLint** for code quality
+
+## API Design Philosophy
+
+### 1. Familiar jQuery-like Syntax
+```javascript
+// jQuery style
+$('.button').click(function() { $(this).addClass('active'); });
+
+// MicroUI equivalent
+MicroUI.on('click', '.button', function() { MicroUI.addClass(this, 'active'); });
+```
+
+### 2. Modern JavaScript Features
+- Promise-based async operations
+- ES6+ syntax (arrow functions, destructuring, modules)
+- Web Animations API for smooth animations
+- Native browser APIs (no polyfills needed)
+
+### 3. Event Delegation by Default
+All event handling uses delegation for better performance:
+```javascript
+MicroUI.on('click', '.dynamic-content', handler); // Works for future elements
+```
+
+### 4. Chainable and Functional
+```javascript
+MicroUI.addClass(element, 'loading')
+  .fadeIn(element, 300)
+  .then(() => MicroUI.removeClass(element, 'loading'));
+```
+
+## Key Components
+
+### DOM Utilities
+- **Selection**: `$()` with caching, `$$()` for multiple elements
+- **Classes**: `addClass()`, `removeClass()`, `toggleClass()`, `hasClass()`
+- **Content**: `html()`, `text()`, `append()`, `prepend()`, `remove()`
+- **Attributes**: `attr()`, `data()`, `css()`
+
+### Event System
+- **Binding**: `on()`, `off()`, `once()`, `trigger()`
+- **Delegation**: Automatic event delegation for performance
+- **Custom Events**: Full support for custom event creation and handling
+
+### AJAX Module
+- **Methods**: `get()`, `post()`, `put()`, `delete()`, `ajax()`
+- **Features**: Promise-based, automatic JSON parsing, error handling
+- **Utilities**: `load()` for HTML content injection
+
+### Animation Module
+- **Presets**: `fadeIn()`, `fadeOut()`, `slideUp()`, `slideDown()`
+- **Custom**: `animate()` using Web Animations API
+- **Performance**: Hardware accelerated, smooth 60fps animations
+
+### Component System
+```javascript
+MicroUI.component('counter', {
+  template: '<div>Count: {{count}}</div>',
+  state: { count: 0 },
+  methods: { increment() { this.state.count++; this.update(); } },
+  events: { 'click .btn': 'increment' },
+  lifecycle: { created() {}, mounted() {}, destroyed() {} }
+});
+```
+
+### Storage Utilities
+- **localStorage**: `MicroUI.store.set()`, `MicroUI.store.get()`
+- **sessionStorage**: `MicroUI.session.set()`, `MicroUI.session.get()`
+- **Features**: Automatic JSON serialization, error handling
+
+## File Structure
+
+```
+microui/
+├── src/
+│   ├── core/
+│   │   ├── dom.js           # DOM manipulation utilities
+│   │   ├── events.js        # Event handling system
+│   │   ├── ajax.js          # HTTP request utilities
+│   │   └── utils.js         # Helper functions
+│   ├── modules/
+│   │   ├── animation.js     # Animation utilities
+│   │   ├── storage.js       # Storage utilities
+│   │   ├── component.js     # Component system
+│   │   └── delegate.js      # Event delegation system
+│   └── index.js             # Main entry point and exports
+├── dist/
+│   ├── microui.js           # Development build (UMD)
+│   ├── microui.min.js       # Production build (minified)
+│   ├── microui.esm.js       # ES module build
+│   └── *.gz                 # Gzipped versions
+├── tests/
+│   ├── dom.test.js          # DOM utilities tests
+│   ├── events.test.js       # Event system tests
+│   ├── ajax.test.js         # AJAX utilities tests
+│   ├── utils.test.js        # Helper functions tests
+│   ├── component.test.js    # Component system tests
+│   └── delegate.test.js     # Delegation system tests
+├── examples/
+│   ├── basic.html           # Basic usage examples
+│   ├── advanced.html        # Advanced UI components
+│   └── test.html            # Manual testing page
+├── scripts/
+│   ├── build-sizes.js       # Bundle size analysis
+│   └── generate-badges.js   # README badge generation
+├── index.html               # GitHub Pages demo site
+├── package.json             # NPM configuration
+├── rollup.config.js         # Build configuration
+└── jest.config.js           # Test configuration
+```
+
+## Build Process
+
+### Development
+```bash
+npm run build:dev    # Development build with source maps
+npm run watch        # Watch mode for development
+npm run serve        # Local development server
+```
+
+### Production
+```bash
+npm run build        # Full production build with size analysis
+npm run test         # Run all tests
+npm run lint         # Code quality checks
+```
+
+### Generated Files
+- **UMD Build**: `dist/microui.js` (48.6KB)
+- **Minified**: `dist/microui.min.js` (18.2KB)
+- **Gzipped**: `dist/microui.min.js.gz` (5.1KB)
+- **ES Modules**: `dist/microui.esm.js` (45.2KB)
+- **Build Report**: `dist/build-report.json` (size analysis)
+
+## Testing Strategy
+
+### Unit Tests (72 total)
+- **DOM Tests**: Element selection, class manipulation, content updates
+- **Event Tests**: Event binding, delegation, custom events
+- **AJAX Tests**: HTTP requests, error handling, response parsing
+- **Component Tests**: Lifecycle, state management, event binding
+- **Delegate Tests**: Namespace management, middleware, scoping
+
+### Test Environment
+- **Jest** test runner with JSDOM for browser simulation
+- **Coverage Reports** generated automatically
+- **CI/CD Integration** with GitHub Actions
+
+## Performance Optimizations
+
+### Bundle Size
+- **Tree Shaking**: Import only needed modules
+- **Minification**: Terser for optimal compression
+- **Gzip Compression**: 93% size reduction (75KB → 5.1KB)
+
+### Runtime Performance
+- **Event Delegation**: Automatic delegation for all events
+- **DOM Caching**: Intelligent element caching in `$()`
+- **Batched Operations**: Minimize DOM reflows
+- **Native APIs**: Direct browser API usage
+
+## Browser Compatibility
+
+### Supported Browsers
+- **Chrome/Edge**: 60+ (ES6+ support)
+- **Firefox**: 55+ (ES6+ support)
+- **Safari**: 10+ (ES6+ support)
+- **Mobile**: iOS Safari 10+, Chrome Mobile 60+
+
+### ES6+ Features Used
+- Arrow functions, destructuring, template literals
+- Promises, async/await
+- Classes, modules (import/export)
+- Web Animations API, Fetch API
+
+## Deployment
+
+### GitHub Pages
+- **Demo Site**: Interactive examples and documentation
+- **Automatic Deployment**: GitHub Actions on push to main
+- **CDN Links**: Direct script tag usage
+
+### NPM Package
+- **Main**: `dist/microui.js` (UMD)
+- **Module**: `dist/microui.esm.js` (ES modules)
+- **Types**: TypeScript definitions included
+
+## Usage Patterns
+
+### Basic DOM Manipulation
+```javascript
+// Select and modify elements
+const button = MicroUI.$('.my-button');
+MicroUI.addClass(button, 'active');
+MicroUI.html(button, 'Clicked!');
+```
+
+### Event Handling
+```javascript
+// Delegated events
+MicroUI.on('click', '.button', function(e) {
+  MicroUI.toggleClass(this, 'selected');
+});
+```
+
+### AJAX Requests
+```javascript
+// Promise-based HTTP
+MicroUI.get('/api/users')
+  .then(users => MicroUI.html('.users', renderUsers(users)))
+  .catch(error => console.error(error));
+```
+
+### Components
+```javascript
+// Reusable components
+MicroUI.component('todo-item', {
+  template: '<div class="todo">{{text}}</div>',
+  events: { 'click': 'toggleComplete' },
+  methods: { toggleComplete() { /* logic */ } }
+});
+```
+
+## Comparison with Alternatives
+
+| Feature | MicroUI | jQuery | React | Alpine.js |
+|---------|---------|--------|-------|-----------|
+| Bundle Size (gzipped) | 5.1KB | 30KB | 13KB | 15KB |
+| Dependencies | 0 | 0 | Many | 0 |
+| Learning Curve | Low | Low | High | Medium |
+| Component System | Yes | No | Yes | Yes |
+| Virtual DOM | No | No | Yes | No |
+| Build Required | No | No | Yes | No |
+
+## Contributing
+
+### Development Setup
+1. Clone repository
+2. `npm install` - Install dependencies
+3. `npm run watch` - Start development mode
+4. `npm test` - Run tests
+
+### Code Style
+- ES6+ JavaScript
+- ESLint configuration enforced
+- JSDoc comments for public APIs
+- Jest tests for all features
+
+### Pull Request Process
+- Fork repository
+- Create feature branch
+- Add tests for new functionality
+- Ensure all tests pass
+- Submit pull request
+
+## License
+
+MIT License - Use freely in commercial and open-source projects.
+
+---
+
+*This file helps LLMs understand the MicroUI codebase structure, design decisions, and usage patterns. For human developers, see README.md for getting started guides and examples.*

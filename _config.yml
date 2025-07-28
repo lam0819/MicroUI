@@ -1,0 +1,56 @@
+# GitHub Pages Configuration for MicroUI
+
+# This file ensures proper GitHub Pages deployment
+# when using the automated GitHub Actions workflow
+
+# Site metadata
+title: MicroUI - Pure Vanilla JavaScript Library
+description: A lightweight, modern JavaScript utility library that makes DOM manipulation and event handling simple and efficient. Only 5.1KB gzipped.
+url: https://your-username.github.io
+baseurl: /microui
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Include/Exclude settings
+include:
+  - .nojekyll
+  - llms.txt
+  - dist/
+  - examples/
+  
+exclude:
+  - node_modules/
+  - src/
+  - tests/
+  - scripts/
+  - .github/
+  - package*.json
+  - rollup.config.js
+  - jest.config.js
+  - .eslintrc.js
+  - .gitignore
+  - PROJECT-STATUS.md
+
+# Collection settings
+collections:
+  examples:
+    output: true
+    permalink: /:collection/:name/
+
+# Default layouts
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: "examples"
+      type: "examples"
+    values:
+      layout: "example"

@@ -1,0 +1,43 @@
+{
+  "timestamp": "2025-07-28T07:48:40.348Z",
+  "version": "1.0.0",
+  "files": {
+    "microui.js": {
+      "original": 49772,
+      "gzipped": 10139,
+      "compression": "79.6"
+    },
+    "microui.min.js": {
+      "original": 18614,
+      "gzipped": 5252,
+      "compression": "71.8"
+    },
+    "microui.esm.js": {
+      "original": 46325,
+      "gzipped": 9901,
+      "compression": "78.6"
+    }
+  },
+  "comparison": [
+    {
+      "name": "MicroUI",
+      "size": 5252
+    },
+    {
+      "name": "jQuery 3.7",
+      "size": 30720
+    },
+    {
+      "name": "React 18",
+      "size": 13312
+    },
+    {
+      "name": "Vue 3",
+      "size": 16384
+    },
+    {
+      "name": "Alpine.js",
+      "size": 15360
+    }
+  ]
+}
