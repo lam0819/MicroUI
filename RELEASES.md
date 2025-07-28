@@ -13,7 +13,7 @@ MicroUI uses GitHub Actions to automatically create releases when version tags a
    npm version major  # For breaking changes (1.0.0 → 2.0.0)
    ```
 
-2. **Push the tag**:
+2. **Push the tag** (this will trigger the release):
    ```bash
    git push origin master --tags
    ```
@@ -24,6 +24,14 @@ MicroUI uses GitHub Actions to automatically create releases when version tags a
    - Create release with generated notes
    - Upload built assets
    - Calculate bundle sizes
+
+**Note**: If you get a "tag already exists" error, delete the tag first:
+```bash
+git tag -d v1.0.0           # Delete local tag
+git push origin :refs/tags/v1.0.0  # Delete remote tag
+npm version 1.0.0           # Create new tag
+git push origin master --tags
+```
 
 ### Release Assets
 
