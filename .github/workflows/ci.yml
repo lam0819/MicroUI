@@ -38,12 +38,12 @@ jobs:
     - name: Check bundle size
       run: |
         echo "Checking bundle sizes..."
-        echo "UMD build size: $(stat -f%z dist/microui.js | numfmt --to=iec-i --suffix=B --format="%.1f")"
-        echo "Minified size: $(stat -f%z dist/microui.min.js | numfmt --to=iec-i --suffix=B --format="%.1f")" 
-        echo "ES module size: $(stat -f%z dist/microui.esm.js | numfmt --to=iec-i --suffix=B --format="%.1f")"
+        echo "UMD build size: $(stat -c%s dist/microui.js | numfmt --to=iec-i --suffix=B --format="%.1f")"
+        echo "Minified size: $(stat -c%s dist/microui.min.js | numfmt --to=iec-i --suffix=B --format="%.1f")" 
+        echo "ES module size: $(stat -c%s dist/microui.esm.js | numfmt --to=iec-i --suffix=B --format="%.1f")"
         
         # Check if minified file is under 12KB (11KB target + buffer)
-        SIZE=$(stat -f%z dist/microui.min.js)
+        SIZE=$(stat -c%s dist/microui.min.js)
         if [ $SIZE -gt 12288 ]; then
           echo "❌ Minified bundle too large: $(echo $SIZE | numfmt --to=iec-i --suffix=B --format="%.1f")"
           exit 1
