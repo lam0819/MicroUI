@@ -9,7 +9,7 @@
   
   **A lightweight, pure vanilla JavaScript utility library that makes DOM manipulation and event handling simple and efficient.**
 
-  **🌟 [Live Demo & Full Documentation](https://lam0819.github.io/microui) 🌟**
+  **🌟 [Live Demo & Full Documentation](https://lam0819.github.io/MicroUI) 🌟** 
 
   [Why Vanilla JS?](#why-vanilla-js) • [Performance](#performance) • [Examples](#examples) • [API Reference](#api-reference) • [Advanced Examples](examples/advanced.html) • [Contributing](#contributing)
 
