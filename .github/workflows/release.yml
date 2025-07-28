@@ -1,0 +1,140 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Triggers on version tags like v1.0.0, v1.2.3, etc.
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Build library
+        run: npm run build
+        
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        
+      - name: Create release notes
+        id: release_notes
+        run: |
+          echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+          echo "## 🚀 MicroUI v${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "### 📦 Assets" >> $GITHUB_OUTPUT
+          echo "- **microui.js** (${$(stat -f%z dist/microui.js | numfmt --to=iec)}B) - Development build with source maps" >> $GITHUB_OUTPUT
+          echo "- **microui.min.js** (${$(stat -f%z dist/microui.min.js | numfmt --to=iec)}B) - Production build, minified" >> $GITHUB_OUTPUT
+          echo "- **microui.esm.js** (${$(stat -f%z dist/microui.esm.js | numfmt --to=iec)}B) - ES modules build" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "### 📊 Bundle Analysis" >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          echo "Minified: $(stat -f%z dist/microui.min.js | numfmt --to=iec)B" >> $GITHUB_OUTPUT
+          echo "Gzipped:  $(gzip -c dist/microui.min.js | wc -c | numfmt --to=iec)B" >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "### 🔗 Links" >> $GITHUB_OUTPUT
+          echo "- 📚 [Documentation](https://lam0819.github.io/MicroUI/)" >> $GITHUB_OUTPUT
+          echo "- 🎮 [Live Examples](https://lam0819.github.io/MicroUI/examples/)" >> $GITHUB_OUTPUT
+          echo "- 📋 [API Reference](https://lam0819.github.io/MicroUI/#api-reference)" >> $GITHUB_OUTPUT
+          echo "- 🤖 [LLMs.txt](https://lam0819.github.io/MicroUI/llms.txt)" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "### 📥 Installation" >> $GITHUB_OUTPUT
+          echo "\`\`\`bash" >> $GITHUB_OUTPUT
+          echo "# NPM" >> $GITHUB_OUTPUT
+          echo "npm install microui@${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "# CDN" >> $GITHUB_OUTPUT
+          echo "<script src=\"https://unpkg.com/microui@${{ steps.get_version.outputs.VERSION }}/dist/microui.min.js\"></script>" >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+      - name: Create ZIP archive
+        run: |
+          mkdir -p release-assets
+          cp dist/microui.js release-assets/
+          cp dist/microui.min.js release-assets/
+          cp dist/microui.esm.js release-assets/
+          cp README.md release-assets/
+          cp LICENSE release-assets/
+          cp package.json release-assets/
+          cd release-assets
+          zip -r ../microui-v${{ steps.get_version.outputs.VERSION }}.zip .
+          cd ..
+          
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: MicroUI v${{ steps.get_version.outputs.VERSION }}
+          body: ${{ steps.release_notes.outputs.RELEASE_NOTES }}
+          draft: false
+          prerelease: false
+          
+      - name: Upload Development Build
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/microui.js
+          asset_name: microui.js
+          asset_content_type: application/javascript
+          
+      - name: Upload Production Build
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/microui.min.js
+          asset_name: microui.min.js
+          asset_content_type: application/javascript
+          
+      - name: Upload ES Modules Build
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/microui.esm.js
+          asset_name: microui.esm.js
+          asset_content_type: application/javascript
+          
+      - name: Upload ZIP Archive
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./microui-v${{ steps.get_version.outputs.VERSION }}.zip
+          asset_name: microui-v${{ steps.get_version.outputs.VERSION }}.zip
+          asset_content_type: application/zip
+          
+      # Uncomment to publish to NPM automatically
+      # - name: Publish to NPM
+      #   run: npm publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
