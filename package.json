@@ -36,13 +36,13 @@
   ],
   "author": "MicroUI Team",
   "license": "MIT",
-  "homepage": "https://your-username.github.io/microui",
+  "homepage": "https://lam0819.github.io/MicroUI",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/microui.git"
+    "url": "https://github.com/lam0819/MicroUI.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/microui/issues"
+    "url": "https://github.com/lam0819/MicroUI/issues"
   },
   "devDependencies": {
     "@babel/core": "^7.22.0",
