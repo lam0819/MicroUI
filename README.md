@@ -179,11 +179,11 @@ MicroUI.component('todo-app', {
 });
 ```
 
-**Performance Comparison:**
-- **Initial Load**: MicroUI components render 3-5x faster
-- **Memory Usage**: 80% less memory consumption
-- **Bundle Size**: 10-50x smaller than framework alternatives
-- **Time to Interactive**: Immediate, no framework initialization
+**Performance Benefits:**
+- **Faster Initial Load**: Smaller bundle = quicker downloads and parsing
+- **Lower Memory Usage**: No framework overhead, minimal runtime footprint  
+- **Better Mobile Performance**: Less JavaScript to parse and execute
+- **Improved Core Web Vitals**: Smaller bundles improve Lighthouse scores
 
 ## 📈 Performance
 
@@ -210,32 +210,29 @@ Alpine.js:    15KB (2.9x larger)
 - **Native APIs**: Direct browser API usage for maximum speed
 - **Tree Shakable**: Import only the modules you need
 
-### Real-World Benchmarks
-| Operation | MicroUI | jQuery | Native JS |
-|-----------|---------|--------|-----------|
-| DOM Selection | 2.1ms | 3.4ms | 1.8ms |
-| Event Binding | 0.8ms | 2.1ms | 1.2ms |
-| Animation | 16ms | 45ms | 14ms |
-| AJAX Request | 12ms | 28ms | 8ms |
+### Performance Philosophy
+MicroUI prioritizes performance through:
+- **Zero Dependencies**: No framework overhead or initialization cost
+- **Small Bundle Size**: 5.1KB gzipped means faster downloads and parsing
+- **Native JavaScript**: Direct browser API access without abstractions
+- **Event Delegation**: Efficient event handling for dynamic content
+- **Minimal Overhead**: Direct DOM manipulation without virtual DOM diffing
 
-*Tested on Chrome 120, average of 1000 operations*
+### Network Performance Impact
+```bash
+# Download time on different connections
+MicroUI (5.1KB gzipped):
+  - Fast 3G: ~51ms
+  - Slow 3G: ~170ms
+  - 2G: ~680ms
 
-### Loading Performance
-```javascript
-// First Contentful Paint (FCP) Comparison
-MicroUI Site:     0.8s
-jQuery Site:      1.2s  (+50% slower)
-React SPA:        2.1s  (+163% slower)
-Vue SPA:          1.9s  (+138% slower)
-
-// Total Blocking Time (TBT)
-MicroUI:          15ms
-jQuery:           45ms  (3x slower)
-React:            180ms (12x slower)
-Vue:              150ms (10x slower)
+jQuery (30KB gzipped):
+  - Fast 3G: ~300ms  
+  - Slow 3G: ~1000ms
+  - 2G: ~4000ms
 ```
 
-### Why These Numbers Matter
+### Why Size Matters
 - **User Experience**: Faster loading = better user engagement
 - **SEO Benefits**: Google factors page speed into search rankings
 - **Mobile Performance**: Critical for slower devices and networks
@@ -1035,7 +1032,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🙏 Credits
 
-Created by [Your Name](https://github.com/lam0819)
+Created by [MicroUI](https://github.com/lam0819)
 
 Inspired by jQuery's simplicity and modern JavaScript best practices.
 

@@ -1,410 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MicroUI - Basic Examples</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      line-height: 1.6;
-    }
-    
-    .container {
-      background: #f5f5f5;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 20px 0;
-    }
-    
-    .button {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin: 5px;
-      transition: background-color 0.2s;
-    }
-    
-    .button:hover {
-      background: #0056b3;
-    }
-    
-    .button.active {
-      background: #28a745;
-    }
-    
-    .alert {
-      padding: 12px 20px;
-      border-radius: 4px;
-      margin: 10px 0;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .alert.show {
-      display: block;
-      opacity: 1;
-    }
-    
-    .alert.success {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
-    
-    .alert.info {
-      background: #d1ecf1;
-      color: #0c5460;
-      border: 1px solid #bee5eb;
-    }
-    
-    .dropdown {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 10px;
-      margin: 10px 0;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .dropdown.show {
-      display: block;
-      opacity: 1;
-    }
-    
-    .form-group {
-      margin: 15px 0;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    
-    .form-group input {
-      width: 100%;
-      padding: 8px 12px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    
-    .todo {
-      background: white;
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .todo.completed {
-      opacity: 0.6;
-      text-decoration: line-through;
-    }
-    
-    .todo input[type="checkbox"] {
-      margin: 0;
-    }
-    
-    .todo-text {
-      flex: 1;
-    }
-    
-    .todo-delete {
-      background: #dc3545;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 12px;
-    }
-  </style>
-</head>
-<body>
-  <h1>MicroUI - Basic Examples</h1>
-  
-  <div class="container">
-    <h2>Event Handling</h2>
-    <button class="button" id="click-btn">Click Me!</button>
-    <button class="button" id="toggle-btn">Toggle Active</button>
-    <button class="button" id="once-btn">One Time Click</button>
-    
-    <div class="alert success" id="click-alert">Button was clicked!</div>
-    <div class="alert info" id="once-alert">This will only show once!</div>
-  </div>
-  
-  <div class="container">
-    <h2>AJAX Example</h2>
-    <button class="button" id="ajax-btn">Load Data</button>
-    <button class="button" id="post-btn">Send Data</button>
-    <div id="ajax-result"></div>
-  </div>
-  
-  <div class="container">
-    <h2>Animations</h2>
-    <button class="button" id="fade-btn">Fade Toggle</button>
-    <button class="button" id="slide-btn">Slide Toggle</button>
-    <div class="dropdown" id="fade-target">
-      <p>This content fades in and out!</p>
-    </div>
-    <div class="dropdown" id="slide-target">
-      <p>This content slides up and down!</p>
-    </div>
-  </div>
-  
-  <div class="container">
-    <h2>Simple Todo List</h2>
-    <form id="todo-form">
-      <div class="form-group">
-        <input type="text" id="todo-input" placeholder="Add a new todo..." required>
-        <button type="submit" class="button">Add Todo</button>
-      </div>
-    </form>
-    <div id="todos"></div>
-  </div>
-  
-  <div class="container">
-    <h2>Storage Example</h2>
-    <div class="form-group">
-      <label>Your Name:</label>
-      <input type="text" id="name-input" placeholder="Enter your name">
-      <button class="button" id="save-name">Save</button>
-      <button class="button" id="load-name">Load</button>
-      <button class="button" id="clear-name">Clear</button>
-    </div>
-    <div id="name-display"></div>
-  </div>
 
-  <!-- Load MicroUI -->
-  <script src="../dist/microui.js"></script>
-  
-  <script>
-    MicroUI.ready(() => {
-      console.log('MicroUI is ready!');
-      
-      // Event handling examples
-      MicroUI.on('click', '#click-btn', function() {
-        const alert = MicroUI.$('#click-alert');
-        alert.style.display = 'block';
-        MicroUI.addClass(alert, 'show');
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroUI - Basic Examples</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
         
-        setTimeout(() => {
-          MicroUI.removeClass(alert, 'show');
-          setTimeout(() => {
-            alert.style.display = 'none';
-          }, 300);
-        }, 2000);
-      });
-      
-      MicroUI.on('click', '#toggle-btn', function() {
-        MicroUI.toggleClass(this, 'active');
-      });
-      
-      MicroUI.once('click', '#once-btn', function() {
-        const alert = MicroUI.$('#once-alert');
-        alert.style.display = 'block';
-        MicroUI.addClass(alert, 'show');
-        this.textContent = 'Already clicked!';
-        this.disabled = true;
-      });
-      
-      // AJAX examples
-      MicroUI.on('click', '#ajax-btn', function() {
-        this.textContent = 'Loading...';
-        this.disabled = true;
+        .container {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
         
-        // Simulate API call with JSONPlaceholder
-        MicroUI.get('https://jsonplaceholder.typicode.com/posts/1')
-          .then(data => {
-            MicroUI.html('#ajax-result', `
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.2s;
+        }
+        
+        .button:hover {
+            background: #0056b3;
+        }
+        
+        .button.active {
+            background: #28a745;
+        }
+        
+        .alert {
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin: 10px 0;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .alert.show {
+            display: block;
+            opacity: 1;
+        }
+        
+        .alert.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .dropdown {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin: 10px 0;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .dropdown.show {
+            display: block;
+            opacity: 1;
+        }
+        
+        .form-group {
+            margin: 15px 0;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .todo {
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .todo.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+        
+        .todo input[type="checkbox"] {
+            margin: 0;
+        }
+        
+        .todo-text {
+            flex: 1;
+        }
+        
+        .todo-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MicroUI - Basic Examples</h1>
+
+    <div class="container">
+        <h2>Event Handling</h2>
+        <button class="button" id="click-btn">Click Me!</button>
+        <button class="button" id="toggle-btn">Toggle Active</button>
+        <button class="button" id="once-btn">One Time Click</button>
+
+        <div class="alert success" id="click-alert">Button was clicked!</div>
+        <div class="alert info" id="once-alert">This will only show once!</div>
+    </div>
+
+    <div class="container">
+        <h2>AJAX Example</h2>
+        <button class="button" id="ajax-btn">Load Data</button>
+        <button class="button" id="post-btn">Send Data</button>
+        <div id="ajax-result"></div>
+    </div>
+
+    <div class="container">
+        <h2>Animations</h2>
+        <button class="button" id="fade-btn">Fade Toggle</button>
+        <button class="button" id="slide-btn">Slide Toggle</button>
+        <div class="dropdown" id="fade-target">
+            <p>This content fades in and out!</p>
+        </div>
+        <div class="dropdown" id="slide-target">
+            <p>This content slides up and down!</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Simple Todo List</h2>
+        <form id="todo-form">
+            <div class="form-group">
+                <input type="text" id="todo-input" placeholder="Add a new todo..." required>
+                <button type="submit" class="button">Add Todo</button>
+            </div>
+        </form>
+        <div id="todos"></div>
+    </div>
+
+    <div class="container">
+        <h2>Storage Example</h2>
+        <div class="form-group">
+            <label>MicroUI:</label>
+            <input type="text" id="name-input" placeholder="Enter MicroUI">
+            <button class="button" id="save-name">Save</button>
+            <button class="button" id="load-name">Load</button>
+            <button class="button" id="clear-name">Clear</button>
+        </div>
+        <div id="name-display"></div>
+    </div>
+
+    <!-- Load MicroUI -->
+    <script src="../dist/microui.js"></script>
+
+    <script>
+        MicroUI.ready(() => {
+            console.log('MicroUI is ready!');
+
+            // Event handling examples
+            MicroUI.on('click', '#click-btn', function() {
+                const alert = MicroUI.$('#click-alert');
+                alert.style.display = 'block';
+                MicroUI.addClass(alert, 'show');
+
+                setTimeout(() => {
+                    MicroUI.removeClass(alert, 'show');
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 300);
+                }, 2000);
+            });
+
+            MicroUI.on('click', '#toggle-btn', function() {
+                MicroUI.toggleClass(this, 'active');
+            });
+
+            MicroUI.once('click', '#once-btn', function() {
+                const alert = MicroUI.$('#once-alert');
+                alert.style.display = 'block';
+                MicroUI.addClass(alert, 'show');
+                this.textContent = 'Already clicked!';
+                this.disabled = true;
+            });
+
+            // AJAX examples
+            MicroUI.on('click', '#ajax-btn', function() {
+                this.textContent = 'Loading...';
+                this.disabled = true;
+
+                // Simulate API call with JSONPlaceholder
+                MicroUI.get('https://jsonplaceholder.typicode.com/posts/1')
+                    .then(data => {
+                        MicroUI.html('#ajax-result', `
               <div class="alert success">
                 <h4>${data.title}</h4>
                 <p>${data.body}</p>
               </div>
             `);
-          })
-          .catch(error => {
-            MicroUI.html('#ajax-result', `
+                    })
+                    .catch(error => {
+                        MicroUI.html('#ajax-result', `
               <div class="alert" style="background: #f8d7da; color: #721c24;">
                 Error: ${error.message}
               </div>
             `);
-          })
-          .finally(() => {
-            this.textContent = 'Load Data';
-            this.disabled = false;
-          });
-      });
-      
-      MicroUI.on('click', '#post-btn', function() {
-        const data = {
-          title: 'MicroUI Test',
-          body: 'This is a test post from MicroUI',
-          userId: 1
-        };
-        
-        MicroUI.post('https://jsonplaceholder.typicode.com/posts', data)
-          .then(response => {
-            MicroUI.html('#ajax-result', `
+                    })
+                    .finally(() => {
+                        this.textContent = 'Load Data';
+                        this.disabled = false;
+                    });
+            });
+
+            MicroUI.on('click', '#post-btn', function() {
+                const data = {
+                    title: 'MicroUI Test',
+                    body: 'This is a test post from MicroUI',
+                    userId: 1
+                };
+
+                MicroUI.post('https://jsonplaceholder.typicode.com/posts', data)
+                    .then(response => {
+                        MicroUI.html('#ajax-result', `
               <div class="alert success">
                 <h4>Post Created!</h4>
                 <p>ID: ${response.id}</p>
                 <p>Title: ${response.title}</p>
               </div>
             `);
-          })
-          .catch(error => {
-            MicroUI.html('#ajax-result', `
+                    })
+                    .catch(error => {
+                        MicroUI.html('#ajax-result', `
               <div class="alert" style="background: #f8d7da; color: #721c24;">
                 Error: ${error.message}
               </div>
             `);
-          });
-      });
-      
-      // Animation examples
-      let fadeVisible = false;
-      MicroUI.on('click', '#fade-btn', function() {
-        const target = MicroUI.$('#fade-target');
-        if (fadeVisible) {
-          MicroUI.removeClass(target, 'show');
-          setTimeout(() => {
-            target.style.display = 'none';
-          }, 300);
-        } else {
-          target.style.display = 'block';
-          setTimeout(() => {
-            MicroUI.addClass(target, 'show');
-          }, 10);
-        }
-        fadeVisible = !fadeVisible;
-      });
-      
-      let slideVisible = false;
-      MicroUI.on('click', '#slide-btn', function() {
-        const target = MicroUI.$('#slide-target');
-        if (slideVisible) {
-          MicroUI.slideUp(target, 400);
-        } else {
-          MicroUI.slideDown(target, 400);
-        }
-        slideVisible = !slideVisible;
-      });
-      
-      // Todo list example
-      MicroUI.on('submit', '#todo-form', function(e) {
-        e.preventDefault();
-        
-        const input = MicroUI.$('#todo-input');
-        const text = input.value.trim();
-        
-        if (text) {
-          const todoId = Date.now();
-          MicroUI.append('#todos', `
+                    });
+            });
+
+            // Animation examples
+            let fadeVisible = false;
+            MicroUI.on('click', '#fade-btn', function() {
+                const target = MicroUI.$('#fade-target');
+                if (fadeVisible) {
+                    MicroUI.removeClass(target, 'show');
+                    setTimeout(() => {
+                        target.style.display = 'none';
+                    }, 300);
+                } else {
+                    target.style.display = 'block';
+                    setTimeout(() => {
+                        MicroUI.addClass(target, 'show');
+                    }, 10);
+                }
+                fadeVisible = !fadeVisible;
+            });
+
+            let slideVisible = false;
+            MicroUI.on('click', '#slide-btn', function() {
+                const target = MicroUI.$('#slide-target');
+                if (slideVisible) {
+                    MicroUI.slideUp(target, 400);
+                } else {
+                    MicroUI.slideDown(target, 400);
+                }
+                slideVisible = !slideVisible;
+            });
+
+            // Todo list example
+            MicroUI.on('submit', '#todo-form', function(e) {
+                e.preventDefault();
+
+                const input = MicroUI.$('#todo-input');
+                const text = input.value.trim();
+
+                if (text) {
+                    const todoId = Date.now();
+                    MicroUI.append('#todos', `
             <div class="todo" data-id="${todoId}">
               <input type="checkbox" class="todo-check">
               <span class="todo-text">${text}</span>
               <button class="todo-delete">Delete</button>
             </div>
           `);
-          
-          input.value = '';
-          
-          // Save to storage
-          const todos = MicroUI.store.get('todos') || [];
-          todos.push({ id: todoId, text, completed: false });
-          MicroUI.store.set('todos', todos);
-        }
-      });
-      
-      // Todo interactions
-      MicroUI.on('change', '.todo-check', function() {
-        const todo = MicroUI.closest(this, '.todo');
-        MicroUI.toggleClass(todo, 'completed', this.checked);
-        
-        // Update storage
-        const todoId = parseInt(todo.dataset.id);
-        const todos = MicroUI.store.get('todos') || [];
-        const index = todos.findIndex(t => t.id === todoId);
-        if (index !== -1) {
-          todos[index].completed = this.checked;
-          MicroUI.store.set('todos', todos);
-        }
-      });
-      
-      MicroUI.on('click', '.todo-delete', function() {
-        const todo = MicroUI.closest(this, '.todo');
-        const todoId = parseInt(todo.dataset.id);
-        
-        MicroUI.fadeOut(todo, 300, () => {
-          MicroUI.remove(todo);
-          
-          // Update storage
-          let todos = MicroUI.store.get('todos') || [];
-          todos = todos.filter(t => t.id !== todoId);
-          MicroUI.store.set('todos', todos);
-        });
-      });
-      
-      // Load saved todos
-      const savedTodos = MicroUI.store.get('todos') || [];
-      savedTodos.forEach(todo => {
-        MicroUI.append('#todos', `
+
+                    input.value = '';
+
+                    // Save to storage
+                    const todos = MicroUI.store.get('todos') || [];
+                    todos.push({
+                        id: todoId,
+                        text,
+                        completed: false
+                    });
+                    MicroUI.store.set('todos', todos);
+                }
+            });
+
+            // Todo interactions
+            MicroUI.on('change', '.todo-check', function() {
+                const todo = MicroUI.closest(this, '.todo');
+                MicroUI.toggleClass(todo, 'completed', this.checked);
+
+                // Update storage
+                const todoId = parseInt(todo.dataset.id);
+                const todos = MicroUI.store.get('todos') || [];
+                const index = todos.findIndex(t => t.id === todoId);
+                if (index !== -1) {
+                    todos[index].completed = this.checked;
+                    MicroUI.store.set('todos', todos);
+                }
+            });
+
+            MicroUI.on('click', '.todo-delete', function() {
+                const todo = MicroUI.closest(this, '.todo');
+                const todoId = parseInt(todo.dataset.id);
+
+                MicroUI.fadeOut(todo, 300, () => {
+                    MicroUI.remove(todo);
+
+                    // Update storage
+                    let todos = MicroUI.store.get('todos') || [];
+                    todos = todos.filter(t => t.id !== todoId);
+                    MicroUI.store.set('todos', todos);
+                });
+            });
+
+            // Load saved todos
+            const savedTodos = MicroUI.store.get('todos') || [];
+            savedTodos.forEach(todo => {
+                MicroUI.append('#todos', `
           <div class="todo ${todo.completed ? 'completed' : ''}" data-id="${todo.id}">
             <input type="checkbox" class="todo-check" ${todo.completed ? 'checked' : ''}>
             <span class="todo-text">${todo.text}</span>
             <button class="todo-delete">Delete</button>
           </div>
         `);
-      });
-      
-      // Storage examples
-      MicroUI.on('click', '#save-name', function() {
-        const name = MicroUI.$('#name-input').value;
-        if (name) {
-          MicroUI.store.set('userName', name);
-          MicroUI.html('#name-display', `
+            });
+
+            // Storage examples
+            MicroUI.on('click', '#save-name', function() {
+                const name = MicroUI.$('#name-input').value;
+                if (name) {
+                    MicroUI.store.set('userName', name);
+                    MicroUI.html('#name-display', `
             <div class="alert success">Name saved: ${name}</div>
           `);
-        }
-      });
-      
-      MicroUI.on('click', '#load-name', function() {
-        const name = MicroUI.store.get('userName');
-        if (name) {
-          MicroUI.$('#name-input').value = name;
-          MicroUI.html('#name-display', `
+                }
+            });
+
+            MicroUI.on('click', '#load-name', function() {
+                const name = MicroUI.store.get('userName');
+                if (name) {
+                    MicroUI.$('#name-input').value = name;
+                    MicroUI.html('#name-display', `
             <div class="alert info">Name loaded: ${name}</div>
           `);
-        } else {
-          MicroUI.html('#name-display', `
+                } else {
+                    MicroUI.html('#name-display', `
             <div class="alert info">No name found in storage</div>
           `);
-        }
-      });
-      
-      MicroUI.on('click', '#clear-name', function() {
-        MicroUI.store.remove('userName');
-        MicroUI.$('#name-input').value = '';
-        MicroUI.html('#name-display', `
+                }
+            });
+
+            MicroUI.on('click', '#clear-name', function() {
+                MicroUI.store.remove('userName');
+                MicroUI.$('#name-input').value = '';
+                MicroUI.html('#name-display', `
           <div class="alert info">Name cleared from storage</div>
         `);
-      });
-    });
-  </script>
+            });
+        });
+    </script>
 </body>
+
 </html>
