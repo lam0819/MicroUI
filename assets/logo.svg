@@ -1,0 +1,23 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="58" fill="#667eea" stroke="#764ba2" stroke-width="4"/>
+  
+  <!-- Main icon - Wrench tool representing utility -->
+  <g transform="translate(30, 30)">
+    <!-- Wrench body -->
+    <path d="M15 25 L25 15 L45 35 L35 45 Z" fill="#ffffff" stroke="#f0f0f0" stroke-width="1"/>
+    
+    <!-- Wrench head -->
+    <circle cx="45" cy="35" r="8" fill="none" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="45" cy="35" r="5" fill="none" stroke="#ffffff" stroke-width="2"/>
+    
+    <!-- Wrench handle -->
+    <rect x="12" y="22" width="20" height="6" fill="#ffffff" rx="3"/>
+    
+    <!-- Tool tip highlight -->
+    <circle cx="45" cy="35" r="2" fill="#ffd700"/>
+  </g>
+  
+  <!-- Micro text indicator -->
+  <text x="60" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff">μUI</text>
+</svg>
