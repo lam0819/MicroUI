@@ -28,9 +28,6 @@ jobs:
       - name: Run tests
         run: npm test
         
-      - name: Build library
-        run: npm run build
-        
       - name: Get version from tag
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
@@ -49,6 +46,9 @@ jobs:
           else
             echo "✅ Version already matches: v$TAG_VERSION"
           fi
+        
+      - name: Build library
+        run: npm run build
         
       - name: Create release notes
         id: release_notes

@@ -88,7 +88,7 @@ const MicroUI = {
   offset,
 
   // Version
-  version: '1.0.0'
+  version: '__VERSION__'
 };
 
 // For UMD build
