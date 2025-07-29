@@ -7,8 +7,10 @@
 ### Pure Vanilla JavaScript Utility Library
 
 [![License](https://img.shields.io/github/license/lam0819/MicroUI?style=for-the-badge&color=blue)](https://github.com/lam0819/MicroUI/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/v/release/lam0819/MicroUI?style=for-the-badge&color=green)](https://github.com/lam0819/MicroUI/releases)
 [![Vanilla JS](https://img.shields.io/badge/Vanilla-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-success?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/microui)
+[![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-success?style=for-the-badge)](https://github.com/lam0819/MicroUI)
+[![Bundle Size](https://img.shields.io/badge/Bundle%20Size-5.1KB%20gzipped-orange?style=for-the-badge)](https://github.com/lam0819/MicroUI/blob/master/dist/)
 
 ---
 
@@ -16,22 +18,26 @@
 
 **6x smaller than jQuery • Zero dependencies • Modern ES6+ • Performance optimized**
 
-### 🚀 Quick Start
+### � Installation
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@0.0.3-alpha/dist/microui.min.js"></script>
+<!-- Via jsDelivr CDN -->
+<script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@latest/dist/microui.min.js"></script>
+
+<!-- Via GitHub Releases -->
+<script src="https://github.com/lam0819/MicroUI/releases/latest/download/microui.min.js"></script>
 ```
 
 ### 🎮 [**Live Demo & Documentation**](https://lam0819.github.io/MicroUI) | 📚 [**API Reference**](#api-reference) | 🧪 [**Interactive Examples**](https://lam0819.github.io/MicroUI/examples/)
 
-[Why Vanilla JS?](#why-vanilla-js) • [Performance](#performance) • [Examples](#examples) • [Advanced Examples](examples/advanced-interactive.html) • [Contributing](#contributing)
+[Why Vanilla JS?](#why-vanilla-js) • [Performance](#performance) • [Examples](#examples) • [Building](#building-from-source) • [Contributing](#contributing)
 
 </div>
 
 ## 🚀 Features
 
 - **Pure Vanilla JS**: Zero dependencies, no frameworks, just native JavaScript
-- **Ultra Lightweight**: Only 18.6KB minified (5.2KB gzipped) - 6x smaller than jQuery
+- **Ultra Lightweight**: Only 18.2KB minified (5.1KB gzipped) - 6x smaller than jQuery
 - **Modern**: Built with ES6+ features and Promise-based APIs
 - **Fast**: Event delegation by default, optimized for performance
 - **Complete**: Includes DOM manipulation, AJAX, animations, components, and more
@@ -40,7 +46,7 @@
 
 ## 🤔 Why Vanilla JS?
 
-### 🚀 Quick Start
+### The Problem with Modern Frameworks
 
 Modern web development has become unnecessarily complex. While frameworks like React, Vue, and Angular are powerful, they often introduce:
 
@@ -49,7 +55,7 @@ Modern web development has become unnecessarily complex. While frameworks like R
 - **Learning Overhead**: New syntax, concepts, and paradigms
 - **Runtime Overhead**: Virtual DOM diffing and framework abstractions
 
-### 🚀 Quick Start
+### The Problem with jQuery
 
 jQuery revolutionized web development by making DOM manipulation simple and cross-browser compatible. However:
 
@@ -58,7 +64,7 @@ jQuery revolutionized web development by making DOM manipulation simple and cros
 - **Monolithic**: Can't tree-shake unused features
 - **Not Modern**: No ES6+, Promises, or modern JavaScript features
 
-### 🚀 Quick Start
+### The MicroUI Solution
 
 **"Maximum functionality, minimum complexity"**
 
@@ -80,35 +86,35 @@ MicroUI.ready(() => {
 });
 ```
 
-### 🚀 Quick Start
+### Why MicroUI?
 
 **No frameworks. No dependencies. Just JavaScript.**
 
 MicroUI is built entirely with native browser APIs, making it:
 
-#### 🚀 Quick Start
+#### Performance First
 - **No Virtual DOM**: Direct DOM manipulation is faster for most use cases
 - **Zero Runtime Overhead**: No framework initialization or abstractions
 - **Native Speed**: Direct access to browser APIs without wrappers
 - **Memory Efficient**: No framework memory footprint
 
-#### 🚀 Quick Start
+#### Developer Experience
 - **Familiar API**: If you know jQuery, you know MicroUI
 - **Modern Features**: Promises, async/await, ES6+ syntax
 - **TypeScript Ready**: Full type definitions included
 - **No Build Required**: Drop in a script tag and start coding
 
-#### 🚀 Quick Start
+#### Future Proof
 - **Web Standards**: Built on stable browser APIs
 - **Framework Agnostic**: Use with React, Vue, or anything
 - **Future Proof**: Vanilla JavaScript never goes out of style
 - **Zero Breaking Changes**: Stable API you can depend on
 
-### 🚀 Quick Start
+### Library Comparison
 
 | Feature | MicroUI | jQuery | React | Alpine.js | Vanilla JS |
 |---------|---------|--------|-------|-----------|------------|
-| **Bundle Size** | 5.2KB gzipped | 30KB gzipped | 42KB+ gzipped | 15KB gzipped | 0KB |
+| **Bundle Size** | 5.1KB gzipped | 30KB gzipped | 42KB+ gzipped | 15KB gzipped | 0KB |
 | **Learning Curve** | ⭐⭐ Easy | ⭐⭐ Easy | ⭐⭐⭐⭐⭐ Steep | ⭐⭐⭐ Medium | ⭐⭐⭐⭐ Hard |
 | **Build Required** | ❌ Optional | ❌ No | ✅ Yes | ❌ No | ❌ No |
 | **Modern Syntax** | ✅ ES6+ | ❌ ES5 | ✅ JSX | ✅ ES6+ | ✅ Native |
@@ -118,9 +124,9 @@ MicroUI is built entirely with native browser APIs, making it:
 | **AJAX Promises** | ✅ Native | ❌ Custom | ❌ External | ❌ Fetch | ✅ Native |
 | **TypeScript** | ✅ Included | ⭐ Community | ✅ First-class | ❌ Limited | ✅ Native |
 
-### 🚀 Quick Start
+### When to Use MicroUI
 
-#### 🚀 Quick Start
+#### Perfect For
 - **Content Websites**: Blogs, marketing sites, documentation
 - **E-commerce**: Product pages, shopping carts, checkout flows
 - **Dashboards**: Admin panels, analytics interfaces
@@ -128,13 +134,13 @@ MicroUI is built entirely with native browser APIs, making it:
 - **Prototyping**: Quick experiments and proof of concepts
 - **Team Onboarding**: Easy for junior developers to understand
 
-#### 🚀 Quick Start
+#### Consider Alternatives For
 - **Complex SPAs**: Applications with heavy state management
 - **Real-time Apps**: Chat applications, collaborative tools
 - **Data-Heavy UIs**: Large tables, complex visualizations
 - **Team Standardization**: If your team is already invested in a framework
 
-### 🚀 Quick Start
+### Real-World Comparison
 
 ```javascript
 // Traditional Framework Component
@@ -202,12 +208,12 @@ MicroUI.component('todo-app', {
 
 MicroUI delivers exceptional performance through modern optimization techniques:
 
-### 🚀 Quick Start
+### Bundle Analysis
 ```bash
 # Production Build Sizes (Automated via GitHub Actions)
-Original:     ~75KB (source code)
-Minified:     18KB (75% reduction)
-Gzipped:      5.2KB (93% reduction)
+Original:     ~45KB (source code)
+Minified:     18.2KB (60% reduction)
+Gzipped:      5.1KB (89% reduction)
 
 # Comparison with Popular Libraries (Gzipped)
 jQuery 3.7:   30KB (5.8x larger)
@@ -216,28 +222,28 @@ Vue 3:        16KB (3.1x larger)
 Alpine.js:    15KB (2.9x larger)
 ```
 
-### 🚀 Quick Start
+### Performance Optimizations
 - **Event Delegation**: All events use delegation by default (faster than direct binding)
 - **DOM Optimization**: Smart caching and batched operations
 - **Memory Efficient**: Minimal memory footprint with automatic cleanup
 - **Native APIs**: Direct browser API usage for maximum speed
 - **Tree Shakable**: Import only the modules you need
 
-### 🚀 Quick Start
+### Why Performance Matters
 MicroUI prioritizes performance through:
 - **Zero Dependencies**: No framework overhead or initialization cost
-- **Small Bundle Size**: 5.2KB gzipped means faster downloads and parsing
+- **Small Bundle Size**: 5.1KB gzipped means faster downloads and parsing
 - **Native JavaScript**: Direct browser API access without abstractions
 - **Event Delegation**: Efficient event handling for dynamic content
 - **Minimal Overhead**: Direct DOM manipulation without virtual DOM diffing
 
-### 🚀 Quick Start
+### Real-World Impact
 ```bash
 # Download time on different connections
-MicroUI (5.2KB gzipped):
-  - Fast 3G: ~51ms
-  - Slow 3G: ~170ms
-  - 2G: ~680ms
+MicroUI (5.1KB gzipped):
+  - Fast 3G: ~50ms
+  - Slow 3G: ~165ms
+  - 2G: ~665ms
 
 jQuery (30KB gzipped):
   - Fast 3G: ~300ms  
@@ -245,7 +251,7 @@ jQuery (30KB gzipped):
   - 2G: ~4000ms
 ```
 
-### 🚀 Quick Start
+### Business Benefits
 - **User Experience**: Faster loading = better user engagement
 - **SEO Benefits**: Google factors page speed into search rankings
 - **Mobile Performance**: Critical for slower devices and networks
@@ -254,14 +260,33 @@ jQuery (30KB gzipped):
 
 ## 📦 Installation
 
-### 🚀 Quick Start
+### CDN (Recommended)
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@0.0.3-alpha/dist/microui.min.js"></script>
+<!-- Via jsDelivr CDN (Latest) -->
+<script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@latest/dist/microui.min.js"></script>
+
+<!-- Via jsDelivr CDN (Specific Version) -->
+<script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@v1.0.0/dist/microui.min.js"></script>
 ```
 
-### 🚀 Quick Start
+### Direct Download
 Download the latest release from [GitHub Releases](https://github.com/lam0819/microui/releases)
+
+```html
+<!-- Local file -->
+<script src="microui.min.js"></script>
+```
+
+### ES Modules
+
+```html
+<!-- ES Module -->
+<script type="module">
+  import MicroUI from 'https://cdn.jsdelivr.net/gh/lam0819/MicroUI@latest/dist/microui.esm.js';
+  // Your code here
+</script>
+```
 
 ## 🏃 Quick Start
 
@@ -269,7 +294,7 @@ Download the latest release from [GitHub Releases](https://github.com/lam0819/mi
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="microui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@latest/dist/microui.min.js"></script>
 </head>
 <body>
   <button class="my-button">Click me!</button>
@@ -291,9 +316,9 @@ Download the latest release from [GitHub Releases](https://github.com/lam0819/mi
 </html>
 ```
 
-## 📖 Documentation
+## 📖 Core Concepts
 
-### 🚀 Quick Start
+### Philosophy
 
 MicroUI is built around a few core principles:
 
@@ -302,16 +327,18 @@ MicroUI is built around a few core principles:
 3. **Modular**: Use only what you need
 4. **Vanilla JS**: No new syntax or compilation required
 
-### 🚀 Quick Start
+### DOM Ready
 
-#### 🚀 Quick Start
+#### Basic Usage
 ```javascript
 MicroUI.ready(() => {
   console.log('DOM is ready!');
 });
 ```
 
-#### 🚀 Quick Start
+### Event Handling
+
+#### Basic Events
 ```javascript
 // Basic event
 MicroUI.on('click', '.button', function(e) {
@@ -332,7 +359,9 @@ MicroUI.once('click', '.one-time', function() {
 MicroUI.off('click', '.button');
 ```
 
-#### 🚀 Quick Start
+### DOM Manipulation
+
+#### Element Selection
 ```javascript
 // Query elements
 const element = MicroUI.$('.my-element');
@@ -353,7 +382,9 @@ MicroUI.attr(element, 'id', 'my-id');
 MicroUI.data(element, 'user', { name: 'John', age: 30 });
 ```
 
-#### 🚀 Quick Start
+### AJAX
+
+#### HTTP Requests
 ```javascript
 // GET request
 MicroUI.get('/api/users')
@@ -370,7 +401,9 @@ MicroUI.post('/api/users', {
 MicroUI.load('.content', '/partial.html');
 ```
 
-#### 🚀 Quick Start
+### Animations
+
+#### Built-in Effects
 ```javascript
 // Fade effects
 MicroUI.fadeIn('.element', 300);
@@ -392,9 +425,9 @@ MicroUI.animate('.box', {
 
 ## 🛠️ API Reference
 
-### 🚀 Quick Start
+### Events
 
-#### 🚀 Quick Start
+#### MicroUI.on(events, selector, handler)
 Attach an event handler using delegation.
 
 ```javascript
@@ -403,14 +436,14 @@ MicroUI.on('click', '.button', function(e) {
 });
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.off(events, selector)
 Remove event handlers.
 
 ```javascript
 MicroUI.off('click', '.button');
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.once(events, selector, handler)
 Attach a handler that fires only once.
 
 ```javascript
@@ -420,51 +453,51 @@ MicroUI.once('submit', '.form', function(e) {
 });
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.trigger(selector, event, data)
 Trigger a custom event.
 
 ```javascript
 MicroUI.trigger('.element', 'customEvent', { value: 42 });
 ```
 
-### 🚀 Quick Start
+### DOM Queries
 
-#### 🚀 Quick Start
+#### MicroUI.$(selector)
 Query single element (with caching).
 
 ```javascript
 const header = MicroUI.$('.header');
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.$$(selector)
 Query multiple elements.
 
 ```javascript
 const buttons = MicroUI.$$('.button');
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.addClass(element, classes)
 Add one or more classes.
 
 ```javascript
 MicroUI.addClass(element, 'active highlight');
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.removeClass(element, classes)
 Remove one or more classes.
 
 ```javascript
 MicroUI.removeClass(element, 'inactive');
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.toggleClass(element, className, force)
 Toggle a class.
 
 ```javascript
 MicroUI.toggleClass(element, 'visible');
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.hasClass(element, className)
 Check if element has class.
 
 ```javascript
@@ -473,9 +506,9 @@ if (MicroUI.hasClass(element, 'active')) {
 }
 ```
 
-### 🚀 Quick Start
+### AJAX
 
-#### 🚀 Quick Start
+#### MicroUI.get(url, options)
 Perform GET request.
 
 ```javascript
@@ -484,7 +517,7 @@ MicroUI.get('/api/data', {
 }).then(data => console.log(data));
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.post(url, data, options)
 Perform POST request.
 
 ```javascript
@@ -492,7 +525,7 @@ MicroUI.post('/api/users', { name: 'John' })
   .then(response => console.log(response));
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.ajax(options)
 Generic AJAX request.
 
 ```javascript
@@ -504,9 +537,9 @@ MicroUI.ajax({
 }).then(response => console.log(response));
 ```
 
-### 🚀 Quick Start
+### Animations
 
-#### 🚀 Quick Start
+#### MicroUI.fadeIn(selector, duration, callback)
 Fade in an element.
 
 ```javascript
@@ -515,21 +548,21 @@ MicroUI.fadeIn('.modal', 300, () => {
 });
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.fadeOut(selector, duration, callback)
 Fade out an element.
 
 ```javascript
 MicroUI.fadeOut('.modal', 300);
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.slideDown(selector, duration, callback)
 Slide down animation.
 
 ```javascript
 MicroUI.slideDown('.dropdown', 400);
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.animate(selector, keyframes, options)
 Custom animation using Web Animations API.
 
 ```javascript
@@ -542,9 +575,9 @@ MicroUI.animate('.box', {
 });
 ```
 
-### 🚀 Quick Start
+### Utilities
 
-#### 🚀 Quick Start
+#### MicroUI.debounce(func, delay)
 Create debounced function.
 
 ```javascript
@@ -553,7 +586,7 @@ const search = MicroUI.debounce((query) => {
 }, 300);
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.throttle(func, delay)
 Create throttled function.
 
 ```javascript
@@ -562,16 +595,16 @@ const handleScroll = MicroUI.throttle(() => {
 }, 100);
 ```
 
-#### 🚀 Quick Start
+#### MicroUI.extend(target, ...sources)
 Merge objects.
 
 ```javascript
 const config = MicroUI.extend({}, defaults, userOptions);
 ```
 
-### 🚀 Quick Start
+### Storage
 
-#### 🚀 Quick Start
+#### Local Storage
 LocalStorage wrapper.
 
 ```javascript
@@ -588,7 +621,7 @@ MicroUI.store.remove('user');
 MicroUI.store.clear();
 ```
 
-#### 🚀 Quick Start
+#### Session Storage
 SessionStorage wrapper.
 
 ```javascript
@@ -596,9 +629,9 @@ MicroUI.session.set('token', 'abc123');
 const token = MicroUI.session.get('token');
 ```
 
-### 🚀 Quick Start
+### Components
 
-#### 🚀 Quick Start
+#### Define Component
 Create reusable component.
 
 ```javascript
@@ -645,9 +678,9 @@ MicroUI.component('counter', {
 MicroUI.mount('.app', 'counter', { count: 10 });
 ```
 
-### 🚀 Quick Start
+### Delegation
 
-#### 🚀 Quick Start
+#### Create Delegation Namespace
 Create event delegation namespace.
 
 ```javascript
@@ -706,11 +739,11 @@ microui/
 
 ## 🔧 Building from Source
 
-### 🚀 Quick Start
+### Prerequisites
 - Node.js 14+
 - npm or yarn
 
-### 🚀 Quick Start
+### Build Commands
 ```bash
 # Clone repository
 git clone https://github.com/lam0819/microui.git
@@ -735,7 +768,7 @@ npm test
 npm run serve
 ```
 
-### 🚀 Quick Start
+### Build Configuration
 
 The project uses Rollup for building:
 
@@ -800,7 +833,7 @@ npm run test:coverage
 npm run test:watch
 ```
 
-### 🚀 Quick Start
+### Test Example
 
 ```javascript
 // tests/dom.test.js
@@ -828,18 +861,18 @@ describe('DOM Utilities', () => {
 
 ## 💡 Examples
 
-### 🚀 Quick Start
+### Live Demos
 - **[Interactive Demo Site](https://lam0819.github.io/MicroUI)** - Complete showcase with all features
 - **[Basic Examples](https://lam0819.github.io/MicroUI/examples/basic-interactive.html)** - Core functionality demonstrations  
 - **[Advanced Components](https://lam0819.github.io/MicroUI/examples/advanced-interactive.html)** - Tabs, modals, dropdowns, accordions, and more
 
-### 🚀 Quick Start
+### Todo List Example
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="microui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@latest/dist/microui.min.js"></script>
   <style>
     .todo { padding: 10px; margin: 5px; background: #f0f0f0; }
     .todo.completed { opacity: 0.5; text-decoration: line-through; }
@@ -931,13 +964,13 @@ describe('DOM Utilities', () => {
 </html>
 ```
 
-### 🚀 Quick Start
+### Component Example
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="microui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@latest/dist/microui.min.js"></script>
 </head>
 <body>
   <div id="app"></div>
@@ -1005,7 +1038,7 @@ describe('DOM Utilities', () => {
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
-### 🚀 Quick Start
+### Development Process
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/my-feature`
@@ -1016,7 +1049,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 7. Push to branch: `git push origin feature/my-feature`
 8. Submit a pull request
 
-### 🚀 Quick Start
+### Code Style
 
 - Use ES6+ features
 - Follow ESLint configuration
@@ -1024,7 +1057,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 - Keep functions small and focused
 - Write tests for new features
 
-### 🚀 Quick Start
+### Documentation
 
 - Update README.md for user-facing changes
 - Update `llms.txt` for codebase architecture changes
