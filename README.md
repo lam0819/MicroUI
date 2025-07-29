@@ -9,8 +9,9 @@
 [![License](https://img.shields.io/github/license/lam0819/MicroUI?style=for-the-badge&color=blue)](https://github.com/lam0819/MicroUI/blob/master/LICENSE)
 [![Release](https://img.shields.io/github/v/release/lam0819/MicroUI?style=for-the-badge&color=green)](https://github.com/lam0819/MicroUI/releases)
 [![Vanilla JS](https://img.shields.io/badge/Vanilla-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-success?style=for-the-badge)](https://github.com/lam0819/MicroUI)
+[![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-success?style=for-the-badge)](https://www.npmjs.com/package/@extralam/microui)
 [![Bundle Size](https://img.shields.io/badge/Bundle%20Size-5.1KB%20gzipped-orange?style=for-the-badge)](https://github.com/lam0819/MicroUI/blob/master/dist/)
+[![NPM Version](https://img.shields.io/npm/v/@extralam/microui?style=for-the-badge&color=red)](https://www.npmjs.com/package/@extralam/microui)
 
 ---
 
@@ -268,6 +269,23 @@ jQuery (30KB gzipped):
 
 <!-- Via jsDelivr CDN (Specific Version) -->
 <script src="https://cdn.jsdelivr.net/gh/lam0819/MicroUI@v1.0.0/dist/microui.min.js"></script>
+
+<!-- Via unpkg CDN -->
+<script src="https://unpkg.com/@extralam/microui@latest/dist/microui.min.js"></script>
+```
+
+### NPM
+
+```bash
+npm install @extralam/microui
+```
+
+```javascript
+// ES6 Import
+import MicroUI from '@extralam/microui';
+
+// CommonJS
+const MicroUI = require('@extralam/microui');
 ```
 
 ### Direct Download
@@ -283,7 +301,7 @@ Download the latest release from [GitHub Releases](https://github.com/lam0819/mi
 ```html
 <!-- ES Module -->
 <script type="module">
-  import MicroUI from 'https://cdn.jsdelivr.net/gh/lam0819/MicroUI@latest/dist/microui.esm.js';
+  import MicroUI from 'https://unpkg.com/@extralam/microui@latest/dist/microui.esm.js';
   // Your code here
 </script>
 ```

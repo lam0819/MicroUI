@@ -1,5 +1,5 @@
 {
-  "name": "microui",
+  "name": "@extralam/microui",
   "version": "1.0.0",
   "description": "A lightweight, modern JavaScript utility library that makes DOM manipulation and event handling simple and efficient.",
   "main": "dist/microui.js",
@@ -34,12 +34,12 @@
     "events",
     "animation"
   ],
-  "author": "MicroUI Team",
+  "author": "extralam",
   "license": "MIT",
   "homepage": "https://lam0819.github.io/MicroUI",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lam0819/MicroUI.git"
+    "url": "git+https://github.com/lam0819/MicroUI.git"
   },
   "bugs": {
     "url": "https://github.com/lam0819/MicroUI/issues"
