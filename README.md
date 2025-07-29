@@ -10,7 +10,7 @@
 [![Release](https://img.shields.io/github/v/release/lam0819/MicroUI?style=for-the-badge&color=green)](https://github.com/lam0819/MicroUI/releases)
 [![Vanilla JS](https://img.shields.io/badge/Vanilla-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-success?style=for-the-badge)](https://github.com/lam0819/MicroUI)
-[![Bundle Size](https://img.shields.io/badge/Bundle%20Size-5.2KB%20gzipped-orange?style=for-the-badge)](https://github.com/lam0819/MicroUI/blob/master/dist/)
+[![Bundle Size](https://img.shields.io/badge/Bundle%20Size-5.1KB%20gzipped-orange?style=for-the-badge)](https://github.com/lam0819/MicroUI/blob/master/dist/)
 
 ---
 
@@ -37,7 +37,7 @@
 ## 🚀 Features
 
 - **Pure Vanilla JS**: Zero dependencies, no frameworks, just native JavaScript
-- **Ultra Lightweight**: Only 18.6KB minified (5.2KB gzipped) - 6x smaller than jQuery
+- **Ultra Lightweight**: Only 18.2KB minified (5.1KB gzipped) - 6x smaller than jQuery
 - **Modern**: Built with ES6+ features and Promise-based APIs
 - **Fast**: Event delegation by default, optimized for performance
 - **Complete**: Includes DOM manipulation, AJAX, animations, components, and more
@@ -114,7 +114,7 @@ MicroUI is built entirely with native browser APIs, making it:
 
 | Feature | MicroUI | jQuery | React | Alpine.js | Vanilla JS |
 |---------|---------|--------|-------|-----------|------------|
-| **Bundle Size** | 5.2KB gzipped | 30KB gzipped | 42KB+ gzipped | 15KB gzipped | 0KB |
+| **Bundle Size** | 5.1KB gzipped | 30KB gzipped | 42KB+ gzipped | 15KB gzipped | 0KB |
 | **Learning Curve** | ⭐⭐ Easy | ⭐⭐ Easy | ⭐⭐⭐⭐⭐ Steep | ⭐⭐⭐ Medium | ⭐⭐⭐⭐ Hard |
 | **Build Required** | ❌ Optional | ❌ No | ✅ Yes | ❌ No | ❌ No |
 | **Modern Syntax** | ✅ ES6+ | ❌ ES5 | ✅ JSX | ✅ ES6+ | ✅ Native |
@@ -211,9 +211,9 @@ MicroUI delivers exceptional performance through modern optimization techniques:
 ### Bundle Analysis
 ```bash
 # Production Build Sizes (Automated via GitHub Actions)
-Original:     ~75KB (source code)
-Minified:     18KB (75% reduction)
-Gzipped:      5.2KB (93% reduction)
+Original:     ~45KB (source code)
+Minified:     18.2KB (60% reduction)
+Gzipped:      5.1KB (89% reduction)
 
 # Comparison with Popular Libraries (Gzipped)
 jQuery 3.7:   30KB (5.8x larger)
@@ -232,7 +232,7 @@ Alpine.js:    15KB (2.9x larger)
 ### Why Performance Matters
 MicroUI prioritizes performance through:
 - **Zero Dependencies**: No framework overhead or initialization cost
-- **Small Bundle Size**: 5.2KB gzipped means faster downloads and parsing
+- **Small Bundle Size**: 5.1KB gzipped means faster downloads and parsing
 - **Native JavaScript**: Direct browser API access without abstractions
 - **Event Delegation**: Efficient event handling for dynamic content
 - **Minimal Overhead**: Direct DOM manipulation without virtual DOM diffing
@@ -240,10 +240,10 @@ MicroUI prioritizes performance through:
 ### Real-World Impact
 ```bash
 # Download time on different connections
-MicroUI (5.2KB gzipped):
-  - Fast 3G: ~51ms
-  - Slow 3G: ~170ms
-  - 2G: ~680ms
+MicroUI (5.1KB gzipped):
+  - Fast 3G: ~50ms
+  - Slow 3G: ~165ms
+  - 2G: ~665ms
 
 jQuery (30KB gzipped):
   - Fast 3G: ~300ms  

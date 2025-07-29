@@ -1,6 +1,6 @@
 {
-    "schemaVersion": 1,
-    "label": "gzipped size",
-    "message": "5.2KB",
-    "color": "brightgreen"
+  "schemaVersion": 1,
+  "label": "gzipped size",
+  "message": "5.1KB",
+  "color": "brightgreen"
 }
