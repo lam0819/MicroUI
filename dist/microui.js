@@ -1,4 +1,4 @@
-/*! MicroUI v1.0.0 | MIT License | https://github.com/lam0819/microui */
+/*! MicroUI v1.0.1 | MIT License | https://github.com/lam0819/microui */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -1665,7 +1665,7 @@
     isVisible: isVisible,
     offset: offset,
     // Version
-    version: '1.0.0'
+    version: '1.0.1'
   };
 
   // For UMD build

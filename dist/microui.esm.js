@@ -1,4 +1,4 @@
-/*! MicroUI v1.0.0 | MIT License | https://github.com/lam0819/microui */
+/*! MicroUI v1.0.1 | MIT License | https://github.com/lam0819/microui */
 function _arrayLikeToArray(r, a) {
   (null == a || a > r.length) && (a = r.length);
   for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
@@ -1659,7 +1659,7 @@ var MicroUI = {
   isVisible: isVisible,
   offset: offset,
   // Version
-  version: '1.0.0'
+  version: '1.0.1'
 };
 
 // For UMD build
