@@ -133,14 +133,14 @@ jobs:
           **CDN:**
           ```html
           <!-- Development -->
-          <script src="https://unpkg.com/microui@${{ steps.get_version.outputs.VERSION }}/dist/microui.js"></script>
+          <script src="https://unpkg.com/@extralam/microui@${{ steps.get_version.outputs.VERSION }}/dist/microui.js"></script>
           
           <!-- Production -->
-          <script src="https://unpkg.com/microui@${{ steps.get_version.outputs.VERSION }}/dist/microui.min.js"></script>
+          <script src="https://unpkg.com/@extralam/microui@${{ steps.get_version.outputs.VERSION }}/dist/microui.min.js"></script>
           
           <!-- ES Modules -->
           <script type="module">
-            import MicroUI from 'https://unpkg.com/microui@${{ steps.get_version.outputs.VERSION }}/dist/microui.esm.js';
+            import MicroUI from 'https://unpkg.com/@extralam/microui@${{ steps.get_version.outputs.VERSION }}/dist/microui.esm.js';
           </script>
           ```
         files: |

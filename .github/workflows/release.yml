@@ -82,7 +82,7 @@ jobs:
           echo "npm install microui@${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_OUTPUT
           echo "" >> $GITHUB_OUTPUT
           echo "# CDN" >> $GITHUB_OUTPUT
-          echo "<script src=\"https://unpkg.com/microui@${{ steps.get_version.outputs.VERSION }}/dist/microui.min.js\"></script>" >> $GITHUB_OUTPUT
+          echo "<script src=\"https://unpkg.com/@extralam/microui@${{ steps.get_version.outputs.VERSION }}/dist/microui.min.js\"></script>" >> $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
           
