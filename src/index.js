@@ -20,80 +20,80 @@ import { delegate, getNamespace, destroyNamespace, listNamespaces, pauseAll, res
  * Main library object containing all functionality
  */
 const MicroUI = {
-  // DOM utilities
-  $,
-  $$,
-  addClass,
-  removeClass,
-  toggleClass,
-  hasClass,
-  attr,
-  data,
-  html,
-  append,
-  prepend,
-  remove,
-  closest,
+    // DOM utilities
+    $,
+    $$,
+    addClass,
+    removeClass,
+    toggleClass,
+    hasClass,
+    attr,
+    data,
+    html,
+    append,
+    prepend,
+    remove,
+    closest,
 
-  // Event system
-  on,
-  off,
-  once,
-  trigger,
-  ready,
+    // Event system
+    on,
+    off,
+    once,
+    trigger,
+    ready,
 
-  // AJAX utilities
-  ajax,
-  get,
-  post,
-  put,
-  delete: del, // 'delete' is a reserved word
-  load,
+    // AJAX utilities
+    ajax,
+    get,
+    post,
+    put,
+    delete: del, // 'delete' is a reserved word
+    load,
 
-  // Animation
-  fadeIn,
-  fadeOut,
-  slideDown,
-  slideUp,
-  animate,
+    // Animation
+    fadeIn,
+    fadeOut,
+    slideDown,
+    slideUp,
+    animate,
 
-  // Storage
-  store,
-  session,
+    // Storage
+    store,
+    session,
 
-  // Component system
-  component,
-  mount,
-  create: create,
-  getComponent,
-  listComponents,
+    // Component system
+    component,
+    mount,
+    create: create,
+    getComponent,
+    listComponents,
 
-  // Delegation system
-  delegate,
-  getNamespace,
-  destroyNamespace,
-  listNamespaces,
-  pauseAll,
-  resumeAll,
-  destroyAll,
-  scope,
-  advanced,
+    // Delegation system
+    delegate,
+    getNamespace,
+    destroyNamespace,
+    listNamespaces,
+    pauseAll,
+    resumeAll,
+    destroyAll,
+    scope,
+    advanced,
 
-  // Utilities
-  debounce,
-  throttle,
-  extend,
-  uniqueId,
-  isVisible,
-  offset,
+    // Utilities
+    debounce,
+    throttle,
+    extend,
+    uniqueId,
+    isVisible,
+    offset,
 
-  // Version
-  version: '__VERSION__'
+    // Version
+    version: '__VERSION__'
 };
 
 // For UMD build
 if (typeof window !== 'undefined') {
-  window.MicroUI = MicroUI;
+    window.MicroUI = MicroUI;
 }
 
 export default MicroUI;

@@ -8,10 +8,10 @@ const banner = `/*! MicroUI v${pkg.version} | MIT License | https://github.com/l
 
 // Simple plugin to replace __VERSION__ with actual version
 const replaceVersion = () => ({
-  name: 'replace-version',
-  transform(code) {
-    return code.replace(/__VERSION__/g, pkg.version);
-  }
+    name: 'replace-version',
+    transform(code) {
+        return code.replace(/__VERSION__/g, pkg.version);
+    }
 });
 
 export default [
